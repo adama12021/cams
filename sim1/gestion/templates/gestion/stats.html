@@ -1,0 +1,314 @@
+{% extends 'gestion/index.html' %}
+
+{% block content %}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+      <div class="col-lg-8 mb-4 order-0">
+        <div class="card">
+          <div class="d-flex align-items-end row">
+            <div class="col-sm-10">
+              <div class="card-body">
+                <h5 class="card-title text-primary"> {% if heure < 12 %}Bonjour {% else %} Bonsoir {% endif %}{{user.username}}! 🎉</h5></h5>
+                <p class="mb-4">
+                Ceci est votre <span class="fw-bold">Dashboard personnalisé</span> Ici vous pouvez accéder au information relative à la gestion.
+                </p> 
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 order-1">
+        <div class="row">
+          <div class="col-lg-6 col-md-12 col-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title d-flex align-items-start justify-content-between">
+                  
+                  
+                </div>
+                
+                <h4 class="text-nowrap mb-6">Produits</h4>
+                <h3 class="card-title  text-primary mb-2">{{produit}}</h3>
+                
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12 col-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title d-flex align-items-start justify-content-between">
+                  
+                  
+                </div>
+                <h4 class="fw-semibold text-nowrap mb-6">Stock nul</h4>
+                <h3 class="card-title text-danger mb-1">{{stock_null}}</h3>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Total Revenue -->
+      <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+        <div class="card">
+          <div class="row row-bordered g-0">
+            <div class="col-md-6">
+              <h5 class="card-header text-primary m-0 me-2 pb-3">Top 5 Produits en vogue</h5>
+              <!-- <div id="totalRevenueChart" class="px-2"></div> -->
+              <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-lg-8">
+                  <table class="table">
+                    {% for prod in prod_vogue %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td class="text-primary fw-bolder"><small>{{prod.produit}}</small></td>
+                      <td class="text-primary fw-bolder"><small>{{prod.total}}</small></td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                </div>
+                <div class="col-md-2"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card-body">
+                <div class="text-center">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-sm btn-outline-primary mt-2 "
+                      type="button"
+                      
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      {{an_actu}}
+                    </button>
+                    
+                  </div>
+                </div>
+              </div>
+              {% if croissance > 0 %}
+                <div class="text-center mt-3">Augmentation observer de</div>
+              {% elif croissance < 0 %}
+              <div class="text-center mt-3">Regression observer de</div>
+              {% else %}
+              <div class="text-center mt-3">Aucune fluctuaction observer</div>
+              {% endif %}
+              
+              <div class="row">
+                <div class="col-md-4"></div>
+
+                <h3 class="col-lg-6" >
+                  {% if croissance > 0 %}
+                  
+
+                 <h1 class="text-center">
+                  <i class="bx bx-up-arrow-alt text-danger"></i>
+                  <b class="text-success">+{{croissance}}%</b></h1>
+                 
+                 {% elif croissance < 0 %}
+                 <h1 class="text-center">
+                 <i class="bx bx-down-arrow-alt text-danger"></i>
+                 <b class="text-danger"> {{croissance}}%</b></h1>
+                 {% else %}
+                 <h1 class="text-center">
+                 <i class="bx bx-right-arrow-alt text-primary"></i>
+                 <b class="text-primary">{{croissance}}%</b></h1>
+                 {% endif %}
+                </h3>
+                <div class="col-md-2"></div>
+                
+
+              </div>
+              <!-- LSLS -->
+              <div class="mt-5"></div>
+              <div class="text-center  fw-bold pt-3 mb-2"> <h2 class="text-primary">Chiffre d'affaire annuel</h2> </div>
+
+              <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
+                <div class="d-flex">
+                  <div class="me-2">
+                    <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <small>{{an_prec}}</small>
+                    <h6 class="mb-0">{{total_anuel2023}} CFA</h6>
+                  </div>
+                </div>
+                <div class="d-flex">
+                  <div class="me-2">
+                    <span class="badge bg-label-info p-2"><i class="bx bx-dollar text-info"></i></span>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <small>{{an_actu}}</small>
+                    <h6 class="mb-0">{{total_anuel2024}} CFA</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="card mt-4">
+          <div class="row mt-4">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div class="card h-100">
+                <canvas id="line" height="200"></canvas>
+              </div>
+              
+            </div>
+            <div class="col-md-1"></div>
+            
+          </div>
+        </div>
+      </div>
+      <!--/ Total Revenue -->
+      <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
+        <div class="row">
+          <div class="col-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+               
+                <span class="d-block fw-semibold mb-1">Produit phare</span>
+                {% for produit in produit_phare %}
+
+                <h6 class="card-title fw-bold text-primary mb-2"> <small >{{produit.produit}}</small> </h6>
+
+                  {% endfor %}
+                
+                </div>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                
+                <span class="fw-semibold d-block mb-1">stock presque null</span>
+                <h3 class="card-title text-danger mb-2">{{stock_pnull}}</h3>
+               
+              </div>
+            </div>
+          </div>
+          <!-- </div>
+<div class="row"> -->
+          <div class="col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
+                  <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
+                    <div class="card-title">
+                      <h5 class="text-nowrap mb-2">Profit total généré</h5>
+                      <span class="badge bg-label-warning rounded-pill">ce mois</span>
+                    </div>
+                    <div class="mt-sm-auto">
+                      
+                      <h3 class="mb-0">{{profit_mensuel}} cfa</h3>
+                    </div>
+                  </div>
+                  <!-- <div id="profileReportChart"></div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
+                  <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
+                    <div class="card-title">
+                      <h5 class="text-nowrap mb-2">Categories de produits</h5>
+                      <span class="badge bg-label-info rounded-pill">Categorie</span>
+                    </div>
+                    <div class="mt-sm-auto">
+                      
+                      <h3 class="mb-0">{{categorie}} </h3>
+                    </div>
+                  </div>
+                  <!-- <div id="profileReportChart"></div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
+                  <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
+                    <div class="card-title">
+                      <h5 class="text-nowrap mb-2">Stock total de produits actuel</h5>
+                      <span class="badge bg-label-danger rounded-pill">stock</span>
+                    </div>
+                    <div class="mt-sm-auto">
+                      
+                      <h3 class="mb-0">{{total_quantite}} </h3>
+                    </div>
+                  </div>
+                  <!-- <div id="profileReportChart"></div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Order Statistics -->
+     
+    </div>
+  </div>
+
+{% endblock%}
+
+
+{% block script %}
+<script>
+  // In your JavaScript code
+ 
+  
+  const l = "{{lundi}}"
+  const m = "{{mardi}}"
+  const me = "{{mercredi}}"
+  const j = "{{jeudi}}"
+  const v = "{{vendredi}}"
+  const s = "{{samedi}}"
+
+  const mon_canvas = document.getElementById('line').getContext('2d');
+    // Handle potential errors during data retrieval
+  const options = {
+    // Chart.js options here
+  };
+  const donne = {
+    labels: [ 'lundi', 'mardi','Mercredi','jeudi','vendredi','samedi'],
+    datasets: [{
+      label: 'QUANTITE DE STOCK QUOTIDIEN',
+      data: [l,m,me,j,v,s],
+      backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+    borderWidth: 1
+    }]
+  };
+
+  const line = new Chart(mon_canvas, {
+    type: 'bar', // Replace with desired chart type
+    data: donne,
+    options: options,
+  });
+</script>
+
+{% endblock %}

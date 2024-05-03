@@ -1,0 +1,94 @@
+{% extends 'supervisor/index.html' %}
+
+{% block nav %}
+<nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            id="layout-navbar"
+          >
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <!-- Search -->
+              <form method="post">
+                {% csrf_token %}
+              <div class="navbar-nav align-items-center">
+                <div class="nav-item d-flex align-items-center">
+                  <i class="bx bx-search fs-4 lh-0"></i>
+                  <input
+                    type="text"
+                    class="form-control border-0 shadow-none"
+                    placeholder="Rechercher gestionnaire..."
+                    aria-label="Rechercher..."
+                    name="mot"
+                  />
+                </div>
+                
+               
+              </div>
+              
+            </form>
+              <!-- /Search -->
+
+              
+            </div>
+          </nav>
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+      <h4 class="fw-bold py-3 mb-1"><span class="text-primary fw-bold fw-light">liste </span> /gestionnaire <small>({{taille}})</small>  </h4>
+      <a href="{% url 'ajout_gestion' %}" class="btn btn-primary right" >ajouter un nouveau gestionnaire</a>
+      <a href="{% url 'export_data_gestion_csv' %}" class="btn btn-info right" ><i class="bx bx-download"></i>csv</a>
+      <a href="{% url 'export_data_gestion_excel' %}" class="btn btn-success right"><i class="bx bx-download"></i>excel</a>
+
+<div class="card text-center mt-3">
+
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom & Prenom</th>
+            <th>poste</th>
+            <th>sexe</th>
+            <th>addresse</th>
+            <th>action</th>
+           
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          {% for gestion in gestions %}
+          <tr>
+            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{gestion.last_name}} {{gestion.first_name}}</strong></td>
+            <td>{{gestion.role}}</td>
+            <td>
+              {{gestion.sex}}
+            </td>
+            
+            <td><span class="badge bg-label-primary me-1">{{gestion.localites}}</span></td>
+        
+            <td>
+              {% if gestion.is_active %}
+              <a href="{% url 'desactive_gestionnaire' gestion.id %}" class="btn btn-danger">desactiver</a>
+              {% else %}
+              <a href="{% url 'active_gestionnaire' gestion.id %}" class="btn btn-success">activer</a>
+              {% endif%}
+            </td>
+          </tr>
+         {% endfor %}
+         
+         
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  </div>
+
+{% endblock %}

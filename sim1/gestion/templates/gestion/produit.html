@@ -1,0 +1,135 @@
+{% extends 'gestion/index.html' %}
+{% block content %}
+
+
+<div class="content-wrapper">
+  
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+      <h3 class="col-sm-10  fw-bold" for="basic-default-email">Rechercher un produit</h3>
+    
+      <form class="fw-bold py-3 mb-1" method="post">
+        {% csrf_token %}
+        <div class=" mb-3 mt-3" >
+           <div class="row">
+            
+            <div class="col-md-2">
+              <div class="input-group input-group-merge">
+                <input
+                  type="text"
+                  id="basic-default-email"
+                  class="form-control"
+                  placeholder="Produit"
+                  aria-describedby="basic-default-email2"
+                  name="produit"
+                  
+                /> 
+
+              </div>
+              </div>
+              
+              <div class="col-md-2">
+                <div class="input-group input-group-merge">
+                  <input
+                    type="number"
+                    id="basic-default-email"
+                    class="form-control"
+                    placeholder="Prix"
+                    aria-describedby="basic-default-email2"
+                    name="prix"
+                    
+                  /> 
+
+                </div>
+            </div>
+
+            <div class="col-md-4">
+              
+                <div class="input-group">
+                  <select class="form-control" name="cat"  id="ratio-select" aria-label="Select ratio">
+                    <option value="" selected >---------- choisir une categorie  ----------</option>
+                        
+                        
+                        
+                        
+                        <option value="Aliments">Aliments</option>
+                        <option value="Electronique">Electronique</option>
+                        <option value="Boissons">Boissons</option>
+                        <option value="Electronique">Vetements</option>
+                        <option value="Education">Education</option>
+                        
+                  </select>
+                </div>
+            
+          </div>
+
+
+            </div>
+            </div>
+    
+    <input type="submit"  class="btn btn-primary right mt-3" value="Recherche" >
+    <a href="{% url 'ges_produit' %}"  class="btn btn-primary right mt-3"  >tout voir</a>
+    <a href="{% url 'gestionH' %}" class="btn btn-danger right mt-3" >retour</a>
+</form>
+
+      <h4 class="fw-bold py-3 mb-1"><span class="text-muted fw-light">Stock /</span> Produit {% if taille %} ({{taille}}) {% endif%}</h4>
+      <a href="{% url 'ajout_produit' %}" class="btn btn-primary right" >ajouter un produit</a>
+      {% if produits %}  
+      <a href="{% url 'export_data_csv'  %}" class="btn btn-info right" ><i class="bx bx-download"></i> csv</a>
+      <a href="{% url 'export_data_excel'  %}" class="btn btn-success right" ><i class="bx bx-download"></i> excel</a>
+      {% endif %}
+
+<div class="card text-center mt-3">
+
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Produit</th>
+            <th>Categorie</th>
+            <th>Prix.U</th>
+            <th>Quantité Actu</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          {% for produit in produits %}
+          <tr>
+            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{produit.nom_produit}}</strong></td>
+            <td>{{produit.categorie}}</td>
+            <td>
+              {{produit.p_unitaire}}
+            </td>
+            {% if produit.quantite <= 10 %}
+            <td><span class="badge bg-label-danger me-1">{{produit.quantite}}</span></td>
+            {% elif  produit.quantite > 10 %}
+            <td><span class="badge bg-label-success me-1">{{produit.quantite}}</span></td>
+            {% endif %}
+            <td>
+              <div class="dropdown">
+                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                  <i class="bx bx-dots-vertical-rounded"></i>
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'modif_produit' produit.id_produit  %}"
+                    ><i class="bx bx-edit-alt me-1"></i> modifier</a
+                  >
+                  <a class="dropdown-item" href="{% url 'sup_produit' produit.id_produit  %}"
+                    ><i class="bx bx-trash me-1"></i> supprimer</a
+                  >
+                </div>
+              </div>
+            </td>
+          </tr>
+         {% endfor %}
+         
+         
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  </div>
+
+{% endblock %}

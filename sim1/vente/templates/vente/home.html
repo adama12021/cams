@@ -1,0 +1,54 @@
+{% extends 'vente/index.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+<div class="content-wrapper">
+  <!-- Content -->
+
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-primary fw-bold fw-light">Vos actions</span> / Vos missions</h4>
+
+    <!-- Examples -->
+    <div class="row mb-5">
+      <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card h-100">
+          <img class="card-img-top" src="{% static 'assets/img/photo/ecommerce-2140603_1920.jpg' %}" alt="Card image cap" />
+          <div class="card-body">
+            <h5 class="card-title">Une vente ?</h5>
+            <p class="card-text">
+              Effectuer la vente!
+            </p>
+            <a href="{% url 'vente' %}" class="btn btn-outline-primary">Vendre</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card h-100">
+          <img class="card-img-top" src="{% static 'assets/img/photo/beautiful-people-3954533_1920.jpg' %}" alt="Card image cap" />
+          <div class="card-body">
+            <h5 class="card-title">Un nouveau client?</h5>
+            <p class="card-text">
+              Ajouter votre client.
+            </p>
+            <a href="{% url 'client' %}" class="btn btn-outline-primary">Ajouter</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card h-100">
+          <img class="card-img-top" src="{% static 'assets/img/photo/vegetables-752153_1280.jpg' %}" alt="Card image cap" />
+          <div class="card-body">
+            <h5 class="card-title">Produit!</h5>
+            <p class="card-text">
+              Mon stock de produit.
+            </p>
+            <a href="{% url 'produit' %}" class="btn btn-outline-primary">Voir</a>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

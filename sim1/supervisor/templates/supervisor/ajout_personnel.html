@@ -1,0 +1,169 @@
+{% extends 'supervisor/index.html' %}
+{% block content %}
+
+
+<div class="content-wrapper">
+  <!-- Content -->
+
+  <div class="container-xxl flex-grow-1 container-p-y">
+<h1 class="text-center mt-2">Enregistrer un nouveau personel</h1>
+<div class="content-wrapper">
+<div class= "text-center">
+
+        
+         <!-- Basic Layout -->
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+         <div class="col-xxl">
+            <div class="card mb-4">
+              <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0">Enregistrement</h5>
+                <small class="text-muted float-end">Personel</small>
+
+              </div>
+              <h4>{{sms}}</h4>
+              {% if message %}
+              {{message}}
+              {% endif %}
+              <div class="card-body">
+                <form method="POST">
+                  {% csrf_token %}
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-default-name">Username</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="username" id="basic-default-name" placeholder="Camara "  required/>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-default-name">Nom</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="firstname" id="basic-default-name" placeholder="Camara " required />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-default-name">Prenom</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="lastname" id="basic-default-name" placeholder="Adama " required />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-default-name">telephone</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="tel" id="basic-default-name"  required />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-default-company">Adresse</label>
+                    <div class="col-sm-10">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="basic-default-company"
+                        placeholder="Abidjan-adjamé rue alladjan"
+                        name="adr"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-default-email">Email</label>
+                    <div class="col-sm-10">
+                      <div class="input-group input-group-merge">
+                        <input
+                          type="text"
+                          id="basic-default-email"
+                          class="form-control"
+                          placeholder="exemple@gmail.com"
+                          
+                          aria-describedby="basic-default-email2"
+                          name="Email"
+                          required
+                        />
+                        
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-default-email">Poste</label>
+                    <div class="col-sm-10">
+                      <div class="input-group">
+                        <select class="form-control" id="basic-default-email" name="role" aria-label="Email address">
+                          <option value="vendeur" selected>vendeur</option>    
+                          <option value="gestionnaire">gestionnaire</option>
+                          
+                        
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="ratio-select">Sexe</label>
+                    <div class="col-sm-10">
+                      <div class="input-group">
+                        <select class="form-control" name="sex" id="ratio-select" aria-label="Select ratio">
+                          <option value="F" selected>FEMME</option>
+                            <option value="M">HOMME</option>
+                       
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-default-email">Mot de pass</label>
+                    <div class="col-sm-10">
+                      <div class="input-group input-group-merge">
+                        <input
+                          type="password"
+                          id="basic-default-email"
+                          class="form-control"
+                          name="mot"
+                          required
+                        />
+                        </div>
+                      
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-default-email">Confirmation Mot de pass</label>
+                    <div class="col-sm-10">
+                      <div class="input-group input-group-merge">
+                        <input
+                          type="password"
+                          id="basic-default-email"
+                          class="form-control"
+                          
+                          name="cmot"
+                          required
+                        />
+                      
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                  <div class="row justify-content">
+                    <div class="col-sm-8">
+                      <button type="submit" class="btn btn-primary">Envoyer</button>
+                      <a href="{% url 'home_supervisor' %}" class=" btn btn-danger"> Retour</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-md-2"></div>
+</div>
+
+ 
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

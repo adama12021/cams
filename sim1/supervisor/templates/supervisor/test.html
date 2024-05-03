@@ -1,0 +1,40 @@
+{% extends 'supervisor/index.html' %}
+
+{% block content %}
+{% if best_selling_product %}
+<div class="row">
+    <div class="mt-5"> <h1 class="text-primary">Prevision</h1></div>
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="card">
+            <h6 class="text-primary fw-bold mt-3 mb-1"> Prevision du mois d'Avirl</h6>  
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6"><h5 class="fw-bold">le meilleur produit sera:</h5> </div> <div class="col-md-6">{{predicted_sales}}</div>
+                    <div class="col-md-6"><h5 class="fw-bold">la quantite espéré sera:</h5> </div> <div class="col-md-6">{{predicted_sales}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3"></div>
+</div>
+
+{% else%}
+<div class="loader">
+    <div class="inner-loader"></div><br><br><br><br><br>
+    <H5 style="margin-bottom:100px;">prediction en cour...</H5>
+  </div>
+
+  
+  {% endif%}
+{% endblock %}
+
+{% block script%}
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+  // Add a class to the body to indicate the page is loaded
+  document.body.classList.add('loaded');
+});
+</script>
+{% endblock %}

@@ -1,0 +1,325 @@
+id,produit,categorie,prix,quantite
+1,Saucisson à l'anis,Charcuterie,1400,90
+2,Pâté de lapin aux noix,Charcuterie,1800,0
+3,Sachet de sel,Condiment,500,0
+4,Terrine de faisan aux morilles,Charcuterie,1700,0
+5,Baume après-rasage hydratant Nivea,Produits de rasage,700,0
+6,Baume à cuticules Sally Hansen,Produits de soin pour les ongles,1000,0
+7,Sachet de thé Lipton,Thé,500,0
+8,Déodorant stick Narta,Produits d'hygiène,800,0
+9,Saucisse de Morteau,Charcuterie,1600,0
+10,Soin hydratant intense pour le visage Nivea,Produits de soin pour le visage,2500,0
+11,Bouteille de Jack Daniel,Liqueur,5000,0
+12,Andouille,Charcuterie,1600,0
+13,Paquet de riz complet,Alimentation,1500,0
+14,Déodorant spray fraîcheur instantanée Nivea,Produits d'hygiène,800,0
+15,Boîte de mouchoirs en papier Kleenex,Hygiène,1000,0
+16,Pâté de cerf,Charcuterie,1800,0
+17,Démaquillant yeux waterproof Garnier,Produits de démaquillage,1200,0
+18,Sac de riz Basmati,Alimentation,4000,0
+19,Petite bouteille de Coca-Cola,Boisson,500,0
+20,Soin anti-fatigue pour le visage Nivea,Produits de soin pour le visage,2500,0
+21,Coppa,Charcuterie,1600,0
+22,Bouteille de shampoing Head & Shoulders,Hygiène,1500,0
+23,Saucisson à l'ail,Charcuterie,1300,0
+24,Terrine de perdreau,Charcuterie,1700,0
+25,Crème de nuit régénérante L'Oréal,Produits de soin pour le visage,1200,0
+26,Sérum hydratant Vichy,Produits de soin pour le visage,3000,0
+27,Déodorant Rexona,Produits d'hygiène,800,0
+28,Pâté de sanglier,Charcuterie,1800,0
+29,Saucisson au genièvre,Charcuterie,1400,0
+30,Sac de croquettes pour chien Pedigree,Animaux,2000,0
+31,Bouteille de sauce soja,Condiment,1000,0
+32,Gel coiffant effet mouillé Schwarzkopf,Produits de coiffure,1500,0
+33,Sachet de sucre vanillé,Sucrerie,500,0
+34,Dentifrice blanchissant Colgate,Produits d'hygiène dentaire,500,0
+35,Boudin noir,Charcuterie,1500,0
+36,Paquet de chips Lay's,Snack,750,0
+37,Shampooing réparateur Elsève,Produits de soin capillaire,1500,0
+38,Rillettes de poisson,Charcuterie,1300,0
+39,Sachet de sucre Daddy,Sucrerie,500,0
+40,Sachet de piment en poudre,Condiment,500,0
+41,Gel douche exfoliant Nivea,Produits de douche,1200,0
+42,Saucisse au poivre,Charcuterie,1600,0
+43,Sachet de pâtes de curry rouge,Condiment,750,0
+44,Crème anti-rides Nivea,Produits de soin pour le visage,2500,0
+45,Pâté de marcassin aux airelles,Charcuterie,1800,0
+46,Rillettes de canard,Charcuterie,1400,0
+47,Pâté de porc,Charcuterie,1200,0
+48,Crème réparatrice pour les mains Neutrogena,Produits de soin pour les mains,1000,0
+49,Pain de savon Lux,Hygiène,500,0
+50,Terrine de faisan,Charcuterie,1700,0
+51,Shampooing anti-chute Vichy,Produits de soin capillaire,1800,0
+52,Sachet de feuilles de thé,Thé,500,0
+53,Dentifrice blancheur intense Colgate,Produits d'hygiène dentaire,500,0
+54,Gel douche nourrissant à l'huile d'amande Neutrogena,Produits de douche,1200,0
+55,Sachet de graines de sésame,Condiment,750,0
+56,Saucisson de Lyon,Charcuterie,1400,0
+57,Saucisse de porc,Charcuterie,1600,0
+58,Pot de crème hydratante Nivea,Hygiène,1500,0
+59,Soin contour des lèvres L'Oréal,Produits de soin des lèvres,700,0
+60,Crème anti-âge L'Oréal,Produits de soin pour le visage,2500,0
+61,Jambon de Montagne Noire,Charcuterie,2000,0
+62,Saucisse sèche,Charcuterie,1700,0
+63,Crème réparatrice pour les pieds Scholl,Produits de soin pour les pieds,1500,0
+64,Baume nourrissant pour les mains L'Occitane,Produits de soin pour les mains,1000,0
+65,Sachet de thé vert,Thé,500,0
+66,Gel nettoyant visage purifiant L'Oréal,Produits de soin pour le visage,1800,0
+67,Terrine de chevreuil,Charcuterie,1700,0
+68,Pâté de perdreau,Charcuterie,1800,0
+69,Crème pour les pieds à l'urée Scholl,Produits de soin pour les pieds,1500,0
+70,Shampooing hydratant Timotei,Produits de soin capillaire,1500,0
+71,Crème solaire peaux sensibles Avène,Produits de protection solaire,2000,0
+72,Sachet de poivre noir,Condiment,500,0
+73,Paquet de biscuits Petit Beurre,Biscuits,1000,0
+74,Baume nourrissant pour les mains Nuxe,Produits de soin pour les mains,1000,0
+75,Mortadelle,Charcuterie,1700,0
+76,Crème raffermissante pour le corps Garnier,Produits de soin pour le corps,2000,0
+77,Gel douche relaxant L'Occitane,Produits de douche,1200,0
+78,Terrine de pigeon,Charcuterie,1700,0
+79,Crème solaire visage et corps biodégradable La Roche-Posay,Produits de protection solaire,2000,0
+80,Boîte de pâte de tomate,Condiment,750,0
+81,Rillettes de thon au citron,Charcuterie,1500,0
+82,Rillettes d'oie,Charcuterie,1500,0
+83,Lingettes démaquillantes biodégradables Nivea,Produits de démaquillage,800,0
+84,Jambon de la Forêt de Marly,Charcuterie,2000,0
+85,Saucisse fumée,Charcuterie,1400,0
+86,Bouteille de jus d'orange Jafpp,Jus,1500,0
+87,Crème pour les mains Neutrogena,Produits de soin pour les mains,1000,0
+88,Lingettes démaquillantes Nivea,Produits de démaquillage,800,0
+89,Pâté de chevreuil,Charcuterie,1800,0
+90,Paquet de biscuits au chocolat,Biscuits,1000,0
+91,Saucisson à l'Espelette,Charcuterie,1400,0
+92,Pâté de canard,Charcuterie,1500,0
+93,Pot de confiture de fraises,Condiment,1000,0
+94,Shampooing hydratant Pantene,Produits de soin capillaire,1500,0
+95,Paquet de popcorn sucré,Snack,750,0
+96,Saucisson à la pistache,Charcuterie,1800,0
+97,Sachet de grains de café arabica,Café,1000,0
+98,Jambon cru,Charcuterie,1700,0
+99,Dentifrice reminéralisant Elmex,Produits d'hygiène dentaire,500,0
+100,Saucisse de dinde,Charcuterie,1600,0
+101,Dentifrice bio blanchissant Lavera,Produits d'hygiène dentaire,500,0
+102,Saucisson aux herbes,Charcuterie,1400,0
+103,Bouteille de bière Guinness,Bière,1000,0
+104,Démaquillant yeux bi-phasé waterproof L'Oréal,Produits de démaquillage,1200,0
+105,Lotion purifiante pour le visage Neutrogena,Produits de soin pour le visage,1200,0
+106,Saucisson à la pistache,Charcuterie,1400,0
+107,Gel douche hydratant à la grenade Neutrogena,Produits de douche,1200,0
+108,Jambon de la Forêt Noire,Charcuterie,2000,0
+109,Boîte de maïs en conserve,Condiment,750,0
+110,Démaquillant bi-phasé waterproof Nivea,Produits de démaquillage,1200,0
+111,Lait hydratant pour le corps Johnson's,Produits de soin pour le corps,1000,0
+112,Terrine de sanglier,Charcuterie,1700,0
+113,Lotion hydratante pour le visage Nivea,Produits de soin pour le visage,1200,0
+114,Jambon d'Auvergne,Charcuterie,2000,0
+115,Déodorant spray sans gaz propulseur Nivea,Produits d'hygiène,800,0
+116,Boîte de mouchoirs en papier Lotus,Hygiène,1000,0
+117,Terrine de canard,Charcuterie,1700,0
+118,Pain de mie Jacques,Alimentation,750,0
+119,Jambon de Paris,Charcuterie,1400,0
+120,Jambon de Parme,Charcuterie,2000,0
+121,Crème apaisante après-soleil Nivea,Produits de protection solaire,2000,0
+122,Gel coiffant effet mat Axe,Produits de coiffure,1500,0
+123,Dentifrice Signal,Produits d'hygiène dentaire,500,0
+124,Déodorant anti-transpirant Vichy,Produits d'hygiène,800,0
+125,Lingettes démaquillantes biodégradables à l'huile d'amande Neutrogena,Produits de démaquillage,800,0
+126,Gel nettoyant visage La Roche-Posay,Produits de soin pour le visage,1800,0
+127,Jambon de Vendée,Charcuterie,1500,0
+128,Déodorant sans aluminium Nivea,Produits d'hygiène,800,0
+129,Gel douche Nivea,Produits de douche,1200,0
+130,Terrine de faisan aux raisins,Charcuterie,1700,0
+131,Saucisse de Toulouse,Charcuterie,1600,0
+132,Crème de jour anti-rides Nivea,Produits de soin pour le visage,1200,0
+133,Paquet de chips Pringles,Snack,1000,0
+134,Rillettes de thon,Charcuterie,1500,0
+135,Baume après-rasage sans alcool Nivea,Produits de rasage,700,0
+136,Paquet de café Nescafé,Café,1500,0
+137,Déodorant roll-on sans alcool Nivea,Produits d'hygiène,800,0
+138,Rillettes de saumon,Charcuterie,1500,0
+139,Dentifrice protection caries Sensodyne,Produits d'hygiène dentaire,500,0
+140,Jambon de l'Ardèche,Charcuterie,2000,0
+141,Lingettes démaquillantes apaisantes Nivea,Produits de démaquillage,800,0
+142,Paquet de biscottes,Biscuits,750,0
+143,Baume à lèvres Labello,Produits de soin des lèvres,700,0
+144,Pâté de marcassin,Charcuterie,1900,0
+145,Lotion pour le corps Dove,Produits de soin pour le corps,1200,0
+146,Crème solaire enfant biodégradable Uriage,Produits de protection solaire,2000,0
+147,Bouteille de sauce tomate,Condiment,500,0
+148,Soin liftant anti-âge L'Oréal,Produits de soin pour le visage,2500,0
+149,Masque purifiant à l'argile L'Oréal,Produits de soin pour le visage,1800,0
+150,Crème solaire Nivea,Produits de protection solaire,2000,0
+151,Crème réparatrice Cicabiafine,Produits de soin pour le corps,1500,0
+152,Sachet de popcorn,Snack,500,0
+153,Chorizo,Charcuterie,2000,0
+154,Saucisse de Strasbourg,Charcuterie,1600,0
+155,Boîte de conserve de thon Petit Navire,Poisson,1000,0
+156,Paquet de cacahuètes,Snack,750,0
+157,Pot de yaourt Danone,Produits laitiers,750,0
+158,Crème de nuit nourrissante Nivea,Produits de soin pour le visage,1200,0
+159,Barre de chocolat Milka,Chocolat,750,0
+160,Pâté de foie,Charcuterie,1100,0
+161,Démaquillant bi-phasé Maybelline,Produits de démaquillage,1200,0
+162,Gel douche exfoliant au sel marin Neutrogena,Produits de douche,1200,0
+163,Dentifrice blancheur Oral-B,Produits d'hygiène dentaire,500,0
+164,Spray corporel Axe,Produits de soin pour le corps,800,0
+165,Terrine de campagne,Charcuterie,1900,0
+166,Rillettes de volaille,Charcuterie,1500,0
+167,Bouteille de vin rouge Merlot,Vin,2500,0
+168,Rillettes de lapin,Charcuterie,1300,0
+169,Dentifrice bio Logodent,Produits d'hygiène dentaire,500,0
+170,Rillettes de dinde,Charcuterie,1300,0
+171,Crème de jour hydratante Nivea,Produits de soin pour le visage,1200,0
+172,Sachet de thé à la menthe,Thé,500,0
+173,Sachet de sucre roux,Sucrerie,500,0
+174,Soin hydratant matifiant Vichy,Produits de soin pour le visage,2500,0
+175,Saucisson aux noisettes,Charcuterie,1400,0
+176,Démaquillant pour les yeux bi-phasé Nivea,Produits de démaquillage,1200,0
+177,Crème pour les pieds Scholl,Produits de soin pour les pieds,1500,0
+178,Lingettes démaquillantes réutilisables Garnier,Produits de démaquillage,800,0
+179,Jambon des Ardennes,Charcuterie,2000,0
+180,Sachet de sel iodé,Condiment,500,0
+181,Baume après-rasage Gillette,Produits de rasage,700,0
+182,Paquet de lentilles,Alimentation,750,0
+183,Pot de moutarde,Condiment,500,0
+184,Tube de dentifrice Colgate,Hygiène,750,0
+185,Crème de jour anti-taches Nivea,Produits de soin pour le visage,1200,0
+186,Sac de farine de blé,Alimentation,1500,0
+187,Déodorant bille fraîcheur Nivea,Produits d'hygiène,800,0
+188,Gel coiffant effet brillant Schwarzkopf,Produits de coiffure,1500,0
+189,Sachet de levure chimique,Condiment,500,0
+190,Lotion tonique purifiante Neutrogena,Produits de soin pour le visage,1200,0
+191,Pot de miel,Condiment,1000,0
+192,Shampooing anti-pelliculaire Head & Shoulders,Produits de soin capillaire,1500,0
+193,Soin anti-rides contour des yeux L'Oréal,Produits de soin pour le visage,2500,0
+194,Lotion tonique Nivea,Produits de soin pour le visage,1200,0
+195,Terrine de marcassin,Charcuterie,1700,0
+196,Paquet de biscuits Oreo,Biscuits,1000,0
+197,Paquet de chips Tortilla,Snack,1000,0
+198,Saucisson à la figue,Charcuterie,1600,0
+199,Saucisse de Montbéliard,Charcuterie,1900,0
+200,Gel coiffant L'Oréal,Produits de coiffure,1500,0
+201,Paquet de pâtes Barilla,Alimentation,1000,0
+202,Saucisson à la mirabelle,Charcuterie,1400,0
+203,Jambon de Luxeuil,Charcuterie,2000,0
+204,Sachet de poudre de curry,Condiment,500,0
+205,Gel nettoyant visage doux Nivea,Produits de soin pour le visage,1800,0
+206,Pâté de marcassin aux champignons,Charcuterie,1800,0
+207,Rillettes de truite,Charcuterie,1500,0
+208,Boîte de céréales pour petit déjeuner,Alimentation,1500,0
+209,Démaquillant pour les yeux Nivea,Produits de démaquillage,1200,0
+210,Crème hydratante Nivea,Produits de soin pour le corps,1000,0
+211,Lingettes rafraîchissantes pour le visage Nivea,Produits de démaquillage,800,0
+212,Crème anti-cellulite Garnier,Produits de soin pour le corps,2000,0
+213,Sachet de riz Mama Africa,Alimentation,2000,0
+214,Terrine de biche,Charcuterie,1700,0
+215,Lotion tonique adoucissante Garnier,Produits de soin pour le visage,1200,0
+216,Boîte de thé matcha,Thé,1500,0
+217,Pot de mayonnaise Amora,Condiment,1000,0
+218,Saucisse de volaille,Charcuterie,1600,0
+219,Boudin blanc,Charcuterie,1400,0
+220,Boîte de haricots verts en conserve,Condiment,750,0
+221,Lotion anti-âge pour le visage L'Oréal,Produits de soin pour le visage,1200,0
+222,Jambon de la Dombes,Charcuterie,2000,0
+223,Baume pour les lèvres Carmex,Produits de soin des lèvres,700,0
+224,Pot de sauce barbecue,Condiment,1000,0
+225,Rillettes de canard au poivre vert,Charcuterie,1500,0
+226,Shampooing volumateur Timotei,Produits de soin capillaire,1500,0
+227,Jambon de Bayonne,Charcuterie,1900,0
+228,Pâté de lapin aux herbes de Provence,Charcuterie,1800,0
+229,Masque capillaire Garnier,Produits de soin capillaire,1800,0
+230,Shampooing volumisant Schwarzkopf,Produits de soin capillaire,1800,0
+231,Terrine de lapin,Charcuterie,1600,0
+232,Sachet de graines de chia,Condiment,1000,0
+233,Sachet de chips au fromage,Snack,1000,0
+234,Paquet de couches Pampers,Hygiène,2500,0
+235,Rillettes de thon à la coriandre,Charcuterie,1500,0
+236,Saucisson à l'Armagnac,Charcuterie,1400,0
+237,Shampooing doux sans sulfates Timotei,Produits de soin capillaire,1500,0
+238,Baume réparateur pour les mains Biafine,Produits de soin pour les mains,1000,0
+239,Bouteille d'huile Aya,Huile,3750,0
+240,Saucisse de Lyon,Charcuterie,1600,0
+241,Baume réparateur pour les lèvres Bepanthen,Produits de soin des lèvres,700,0
+242,Sachet de paprika,Condiment,500,0
+243,Pâté de volaille,Charcuterie,1200,0
+244,Pot de crème dessert Danette,Dessert,1000,0
+245,Jambon du Bourbonnais,Charcuterie,2000,0
+246,Rillettes de thon à l'huile d'olive,Charcuterie,1500,0
+247,Pot de crème glacée Carte d'Or,Glaces,2000,0
+248,Lingettes démaquillantes à l'eau micellaire Garnier,Produits de démaquillage,800,0
+249,Gel douche hydratant Dove,Produits de douche,1200,0
+250,Pâté en croûte,Charcuterie,1800,0
+251,Soin liftant contour des yeux L'Oréal,Produits de soin pour le visage,2500,0
+252,Pâté de lapin aux noisettes,Charcuterie,1800,0
+253,Saucisse de canard fumée,Charcuterie,1600,0
+254,Paquet de spaghetti,Alimentation,750,0
+255,Pâté de lapin,Charcuterie,1300,0
+256,Pâté de campagne,Charcuterie,1200,0
+257,Dentifrice protection gencives Parodontax,Produits d'hygiène dentaire,500,0
+258,Boîte de mouchoirs en papier Tempo,Hygiène,750,0
+259,Sac de pommes de terre,Légumes,1000,0
+260,Baume hydratant pour les mains Mixa,Produits de soin pour les mains,1000,0
+261,Saucisson à la truffe,Charcuterie,1400,0
+262,Gel douche nourrissant Dove,Produits de douche,1200,0
+263,Rillettes de porc,Charcuterie,1300,0
+264,Rillettes de veau,Charcuterie,1500,0
+265,Gel nettoyant visage purifiant Neutrogena,Produits de soin pour le visage,1800,0
+266,Terrine de gibier,Charcuterie,1500,0
+267,Saucisse de Strasbourg,Charcuterie,1700,0
+268,Saucisson sec,Charcuterie,1500,0
+269,Shampooing réparateur L'Oréal,Produits de soin capillaire,1500,0
+270,Pâté de pigeon,Charcuterie,1800,0
+271,Démaquillant Garnier,Produits de démaquillage,1200,0
+272,Savon exfoliant Neutrogena,Produits de douche,1000,0
+273,Pâté de faisan,Charcuterie,1800,0
+274,Poulet entier fermier,Viande,3000,0
+275,Bouteille de vinaigre blanc,Condiment,750,0
+276,Jambon de Normandie,Charcuterie,2000,0
+277,Bouteille de lait frais Lactel,Lait,1000,0
+278,Jambon de Savoie,Charcuterie,2000,0
+279,Sac de croquettes pour chat Whiskas,Animaux,1500,0
+280,Crème solaire enfants Uriage,Produits de protection solaire,2000,0
+281,Saucisse de canard,Charcuterie,1600,0
+282,Saucisse de foie,Charcuterie,1800,0
+283,Lotion anti-rougeurs pour le visage Avène,Produits de soin pour le visage,1200,0
+284,Jambon fumé,Charcuterie,1400,0
+285,Bouteille de sirop de grenadine,Boisson,750,0
+286,Rosette,Charcuterie,1800,0
+287,Rillettes de thon au piment d'Espelette,Charcuterie,1500,0
+288,Boîte de kleenex,Hygiène,1000,0
+289,Bouteille d'eau minérale Cristaline,Eau,500,0
+290,Pot de pâte à tartiner Nutella,Sucrerie,2000,0
+291,Paquet de riz long grain,Alimentation,1000,0
+292,Pâté de lièvre,Charcuterie,1800,0
+293,Saucisse de veau,Charcuterie,1600,0
+294,Terrine de pintade,Charcuterie,1600,0
+295,Bouteille de jus de pomme,Jus,1500,0
+296,Sachet de mélange d'épices pour tajine,Condiment,750,0
+297,Jambon de la Vallée d'Aoste,Charcuterie,2000,0
+298,Lotion apaisante après-rasage Nivea,Produits de rasage,700,0
+299,Shampooing fortifiant L'Oréal,Produits de soin capillaire,1800,0
+300,Lotion purifiante pour le visage L'Oréal,Produits de soin pour le visage,1200,0
+301,Soin anti-âge global pour le visage L'Oréal,Produits de soin pour le visage,2500,0
+302,Sachet de lessive Skip,Hygiène,750,0
+303,Shampooing anti-pelliculaire Vichy,Produits de soin capillaire,1500,0
+304,Sachet de lait en poudre Nido,Lait,1500,0
+305,Rillettes de thon au basilic,Charcuterie,1500,0
+306,Saucisson à la noisette,Charcuterie,1700,0
+307,Jambon blanc,Charcuterie,1000,0
+308,Terrine de lapin aux pruneaux,Charcuterie,1700,0
+309,Pâté de lapin aux pistaches,Charcuterie,1800,0
+310,Spray corporel rafraîchissant Axe,Produits de soin pour le corps,800,0
+311,Paquet de muesli,Alimentation,1000,0
+312,Pot de confiture Bonne Maman,Condiment,1500,0
+313,Saucisson à la coriandre,Charcuterie,1400,0
+314,Crème de jour hydratante et protectrice Nivea,Produits de soin pour le visage,1200,0
+315,Crème solaire visage La Roche-Posay,Produits de protection solaire,2000,0
+316,Boîte de céréales Kellogg's,Céréales,1500,0
+317,Gel douche relaxant à la lavande L'Occitane,Produits de douche,1200,0
+318,Saucisse de Francfort,Charcuterie,1000,0
+319,Démaquillant waterproof Maybelline,Produits de démaquillage,1200,0
+320,Sachet de thé rooibos,Thé,500,0
+321,Lotion anti-imperfections Garnier,Produits de soin pour le visage,1200,0
+322,Déodorant bille sans parfum Vichy,Produits d'hygiène,800,0
+323,Soin contour des yeux L'Oréal,Produits de soin pour le visage,2500,0
+324,Saucisson au roquefort,Charcuterie,1400,0

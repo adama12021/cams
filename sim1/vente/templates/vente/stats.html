@@ -1,0 +1,289 @@
+{% extends 'vente/index.html' %}
+
+{% block content %}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+      <div class="col-lg-8 mb-4 order-0">
+        <div class="card">
+          <div class="d-flex align-items-end row">
+            <div class="col-sm-7">
+              <div class="card-body">
+                <h5 class="card-title text-primary">
+                  {% if heure < 12 %}Bonjour {% else %} Bonsoir {% endif %}{{user.username}}! 🎉</h5>
+                <p class="mb-4">
+                  vous avez effectuer <span class="fw-bold">{{pourcentage}}%</span> des ventes journalieres
+                </p>               
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 order-1">
+        <div class="row">
+          <div class="col-lg-6 col-md-12 col-6 mb-3">
+            <div class="card">
+              <div class="card-body">
+                
+                <span class="fw-semibold d-block mb-1">Top produit</span>
+                <h5 class="card-title mb-2">
+                  {% for produit in top_produits %}
+
+                 <h5 class="text-primary"> {{produit.produit_nom}}</h5>
+
+                  {% endfor %}
+                
+                </h5>
+               </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12 col-6 mb-3">
+            <div class="card">
+              <div class="card-body">
+               
+                <span class="fw-semibold">Mes ventes(jour)</span>
+                <h3 class="card-title   text-nowrap mb-1">{{ventes}}</h3>
+                {% if haut_bas_jour > 0 %}
+                <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +{{haut_bas_jour}}%</small>
+                {% elif haut_bas_jour == 0 %}
+                <small class="text-primary fw-semibold"><i class="bx bx-right-arrow-alt"></i> {{haut_bas_jour}}%</small>              
+                {% else %}
+                <small class="text-danger fw-semibold"><i class="bx bx-down-arrow-alt"></i> {{haut_bas_jour}}%</small>             
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Total Revenue -->
+      <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+        <div class="card">
+          <div class="row row-bordered g-0">
+            <div class="col-md-8">
+              <h5 class="card-header text-info m-0 me-2 pb-3">Mon Top classement</h5>
+              <!-- <div id="totalRevenueChart" class="px-2"></div> -->
+              <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-lg-8">
+                  <h5 class="card-header m-0 me-2 pb-3">Mon Top 5 Clients</h5>
+                  <table class="table">
+                    {% for top in top_client %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td class="text-primary fw-bolder">{{top.nom}} {{top.prenom}}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                  <h5 class="card-header m-0 me-2 pb-3">Mon Top 5 produits <small>vendus</small></h5>
+                  <table class="table">
+                    {% for top in top_produit_5 %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td class="text-primary fw-bolder">{{top.produit_nom}}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                </div>
+                <div class="col-md-2"></div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card-body">
+                <div class="text-center">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-sm btn-outline-primary dropdown-toggle"
+                      type="button"
+                      id="growthReportId"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      2024
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
+                      <a class="dropdown-item" href="javascript:void(0);">2024</a>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div id="growthChart"></div> -->
+              <div class="text-center fw-bold text-info pt-3 mb-2">Mon profit anuel génére</div>
+
+              <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
+                <div class="d-flex">
+                  <div class="me-2">
+                    <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <small>{{an}}</small>
+                    <h6 class="mb-0">{{profit_anuel}} cfa</h6>
+                  </div>
+                </div>
+                <div class="d-flex">
+                  
+                </div>
+              </div>
+            </div>
+
+            
+          </div>
+        </div>
+
+        <div class="card mt-4">
+          <div class="row mt-4">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div class="card h-100">
+                <canvas id="line"></canvas>
+              </div>
+              
+            </div>
+            <div class="col-md-1"></div>
+            
+          </div>
+        </div>
+
+      </div>
+      <!--/ Total Revenue -->
+      <div class="col-12 col-md-8 col-lg-4 order-3 order-md-1">
+        <div class="row">
+          <div class="col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title d-flex align-items-start justify-content-between">
+                  
+                  
+                </div>
+                <span class="d-block text-info mb-1 fw-semibold">Profit total généré au cour des ventes</span>
+                <h3 class="card-title text-nowrap mb-2 text-primary">{{profit}} cfa</h3>
+                
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-12 mb-4">
+            <div class="card">
+              <div class="row">
+              <div class="card-body col-md-6">
+                
+                <span class="text-info d-block mb-1">Profit du jours</span>
+                <h3 class="card-title mb-2">{{profit_jour}} cfa</h3>
+                {% if haut_bas_profit > 0 %}
+                <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +{{haut_bas_profit}}%</small>
+                {% elif haut_bas_profit == 0 %}
+                <small class="text-primary fw-semibold"><i class="bx bx-right-arrow-alt"></i> {{haut_bas_profit}}%</small>              
+                {% else %}
+                <small class="text-danger fw-semibold"><i class="bx bx-down-arrow-alt"></i> {{haut_bas_profit}}%</small>             
+                {% endif %}
+              </div>
+
+              <div class="col-md-6">
+                {% if haut_bas_profit < 0 %}
+                <span class=" d-block mb-1 mt-4">Baisse de <small class="text-danger">{{haut_bas_profit}}%</small>  comparer a hier</span>
+                {% elif haut_bas_profit > 0%}
+                <span class=" d-block mb-1 mt-4">Hausse de <small class="text-success"><B>+{{haut_bas_profit}}%</B></small>  comparer a hier</span>
+                
+                {% elif haut_bas_profit == 0 %}
+                <span class=" d-block mb-1 mt-4">Aucune fluctuaction constaté</span>
+
+                {% endif%}
+              </div>
+
+            </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-12 mb-4">  
+            <div class="card">
+              <div class="row">
+                <div class="card-body col-md-6">
+                
+                  <span class="text-info d-block mb-1">Profit mesuel</span>
+                  <h3 class="card-title mb-2">{{profit_mensuel}} cfa</h3>
+                  {% if haut_bas_mois > 0  %}
+                  <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +{{haut_bas_mois}}%</small>
+                  {% elif haut_bas_mois < 0  %}
+                  <small class="text-danger fw-semibold"><i class="bx bx-down-arrow-alt"></i> {{haut_bas_mois}}%</small>
+                  {% else %}
+                  <small class="text-primary fw-semibold"><i class="bx bx-right-arrow-alt"></i> {{haut_bas_mois}}%</small>
+                  {% endif %}
+                </div>
+                <div class="col-md-6">
+                  {% if haut_bas_mois < 0 %}
+                <span class=" d-block mb-1 mt-4">Baisse de <small class="text-danger">{{haut_bas_mois}}%</small>  comparer au mois précedent</span>
+                {% elif haut_bas_mois > 0%}
+                <span class=" d-block mb-1 mt-4">Hausse de <small class="text-success"><B>+{{haut_bas_mois}}%</B></small>  comparer au mois précedent</span>
+                
+                {% elif haut_bas_mois == 0 %}
+                <span class=" d-block mb-1 mt-4">Aucune fluctuaction constaté</span>
+
+                {% endif%}
+                  
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <!-- </div>
+<div class="row"> -->
+          
+        </div>
+        
+      </div>
+    </div>
+    <div class="row">
+      <!-- Order Statistics -->
+      
+      <!--/ Order Statistics -->
+
+      <!-- Expense Overview -->
+      
+      <!--/ Expense Overview -->
+
+      <!-- Transactions -->
+      
+      <!--/ Transactions -->
+    </div>
+  </div>
+
+{% endblock%}
+
+{% block script %}
+<script>
+  // In your JavaScript code
+ 
+  const Aujourdhui = "{{total_jour}}";
+  const hier = "{{total_jour_prec}}";
+  const l = "{{lundi}}"
+  const m = "{{mardi}}"
+  const me = "{{mercredi}}"
+  const j = "{{jeudi}}"
+  const v = "{{vendredi}}"
+  const s = "{{samedi}}"
+
+  const mon_canvas = document.getElementById('line').getContext('2d');
+    // Handle potential errors during data retrieval
+  const options = {
+    // Chart.js options here
+  };
+  const donne = {
+    labels: [ 'lundi', 'mardi','Mercredi','jeudi','vendredi','samedi'],
+    datasets: [{
+      label: 'CHIFFRE DES VENTE DE LA SEMAINE',
+      data: [l,m,me,j,v,s],
+      backgroundColor: ['brown', 'green','pink','red','black'],
+    }]
+  };
+
+  const line = new Chart(mon_canvas, {
+    type: 'line', // Replace with desired chart type
+    data: donne,
+    options: options,
+  });
+
+  
+
+  
+</script>
+{% endblock %}

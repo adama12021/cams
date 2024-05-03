@@ -1,0 +1,54 @@
+{% extends 'vente/index.html' %}
+{% block content %}
+<div class= "text-center">
+    
+      
+         <!-- Basic Layout -->
+        <div class="row mt-5">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+         <div class="col-xxl">
+            <div class="card mb-4">
+              <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0">Annulation</h5>
+                
+              </div>
+              <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <label class="text-center col-form-label" for="basic-default-name">Etes vous sur de vouloir d'annuler cette vente  </label>
+                      </div>    
+                      <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label"  for="basic-default-company">motif</label>
+                        <div class="col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="basic-default-company"
+                            
+                            name="motif"
+                            placeholder="motif d'Annulation"
+                            required
+                            
+                          />
+                        </div>
+                      </div>      
+                      <div class="row justify-content">
+                    <div class=" text-center">
+                      <button type="submit" class="btn btn-danger">Valider</button>
+                      <a href="{% url 'vente' %}" class=" btn btn-primary"> Retour</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-md-2"></div>
+</div>
+
+
+</div>
+{% endblock %}

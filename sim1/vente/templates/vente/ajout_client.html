@@ -1,0 +1,115 @@
+{% extends 'vente/index.html' %}
+
+{% block content %}
+
+{% if messages %}
+  <ul class="list-group">
+    {% for message in messages %}
+      <li class="list-group-item alert alert-{{ message.tags }}">
+        {{ message }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<h1 class="text-center mt-2">Enregistrer un nouveau client</h1>
+<div class= "text-center">
+    <form  method="post">
+      {% csrf_token %}
+         <!-- Basic Layout -->
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+         <div class="col-xxl">
+            <div class="card mb-4">
+              <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0">Clients</h5>
+                
+              </div>
+              <div class="card-body">
+                <form>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-default-name">Nom</label>
+                        <div class="col-sm-10">
+                          <input type="text" required name="nom" class="form-control" id="basic-default-name" placeholder="Camara" />
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-default-name">Prenom</label>
+                        <div class="col-sm-10">
+                          <input type="text" required name="prenom" class="form-control" id="basic-default-name" placeholder="Adama" />
+                        </div>
+                      </div>
+
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label"  for="basic-default-email">Email</label>
+                    <div class="col-sm-10">
+                      <div class="input-group input-group-merge">
+                        <input
+                          type="email"
+                          name="email"
+                          id="basic-default-email"
+                          class="form-control"
+                          placeholder="adamscam925@gmail.com"
+                          aria-describedby="basic-default-email2"
+                          required
+                        />
+                        
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-default-name">Addresse</label>
+                    <div class="col-sm-10">
+                      <input type="text" required name="adr" class="form-control" id="basic-default-name" placeholder="Abidjan plateau" />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="basic-default-company">Telephone</label>
+                    <div class="col-sm-10">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="basic-default-company"
+                        placeholder="0000000000"
+                        name="tel"
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" for="ratio-select" >Sexe</label>
+                    <div class="col-sm-10">
+                      <div class="input-group">
+                        <select class="form-control" name="genre" id="ratio-select" aria-label="Select ratio">
+                          <option value="M" selected>HOMME</option>
+                          <option value="F">FEMME</option>
+                       
+                        </select>
+                      </div>
+                    </div>
+                  </div>                  
+                  
+                  <div class="row justify-content">
+                    <div class="col-sm-8">
+                      <button type="submit" class="btn btn-primary">Ajouter</button>
+                      <a href="{% url 'client' %}" class=" btn btn-danger"> Retour</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-md-2"></div>
+</div>
+
+    </form>
+</div>
+
+
+{% endblock %}

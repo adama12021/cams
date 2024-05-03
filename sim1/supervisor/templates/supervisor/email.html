@@ -1,0 +1,10 @@
+{% autoescape off %}
+
+Bienvenue à CamsoCorp
+
+Hello {{ name }}
+
+Confirmer votre email en cliquant sur le lien suivant
+
+lien de Confirmation :(https//{{domain}}{% url 'activate' uidb64=uid token=token %})
+{% endautoescape %}

@@ -1,0 +1,64 @@
+{% extends 'supervisor/index.html' %}
+{% block content %}
+
+
+
+<div class="content-wrapper">
+  <!-- Content -->
+
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Vos actions /</span> Vos missions</h4>
+
+    <!-- Examples -->
+    <div class="row mb-5">
+      <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card h-100">
+          <img class="card-img-top" src="../assets/img/elements/2.jpg" alt="Card image cap" />
+          <div class="card-body">
+            <h5 class="card-title">De nouveau vendeur?</h5>
+            <p class="card-text">
+              Pour ajouter un nouveau vendeur veillez cliquer sur ajouter.
+            </p>
+            <a href="{% url 'ajout_gestion' %}" class="btn btn-outline-primary">Ajouter</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Gérer votre stock!</h5>
+            <h6 class="card-subtitle text-muted">Ajouter un nouveau Gestionnaire</h6>
+          </div>
+          <img class="img-fluid" src="../assets/img/elements/13.jpg" alt="Card image cap" />
+          <div class="card-body">
+            <p class="card-text">pour ajouter un nouveau gestionnaire ajouter cliquer que ajouter</p>
+            <a href="{% url 'ajout_gestion' %}" class="btn btn-outline-primary">Ajouter</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Votre compte</h5>
+            <h6 class="card-subtitle text-muted">Visualisez vos taches</h6>
+            <img
+              class="img-fluid d-flex mx-auto my-4"
+              src="../assets/img/elements/4.jpg"
+              alt="Card image cap"
+            />
+            <p class="card-text">Visualisez votre espaces personel</p>
+            <a href="javascript:void(0)" class="btn btn-outline-primary">visiter</a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Examples -->
+
+    <!-- Content types -->
+    
+       
+     
+
+
+{% endblock %}

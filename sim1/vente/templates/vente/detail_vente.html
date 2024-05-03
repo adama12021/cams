@@ -1,0 +1,76 @@
+{% extends 'vente/index.html' %}
+{% block content %}
+
+
+
+<h1 class="text-center mt-5">Details de la vente</h1>
+<div class= "text-center">
+   
+     
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+         <div class="col-xxl">
+            <div class="card mb-4">
+              <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0 text-primary">Details</h5>
+                <small class="text-danger float-end">vente</small>
+              </div>
+              <div class="card-body">
+
+                <form method="post">
+                  {% csrf_token %} 
+                 
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label text-danger fw-bolder" for="basic-default-name">Produit</label>
+                    <div class="col-sm-10 text-primary">{{details.id_produit.nom_produit}}</div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label fw-bolder text-danger" for="basic-default-name">Categorie</label>
+                    <div class="col-sm-10 text-primary">{{details.id_produit.categorie}}</div>
+                </div>
+
+                  
+                 
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label fw-bolder text-danger" for="basic-default-email">Quantité +</label>
+                    <div class="col-sm-10 text-primary">{{details.quantite_vendu}}</div>
+                      
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label  text-danger" for="basic-default-email">total vente </label>
+                        <div class="col-sm-10 text-primary">
+                        {{details.prix_total}} cfa
+                        </div>
+                          
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label fw-bolder text-danger" for="basic-default-name">Date vente</label>
+                            <div class="col-sm-10 text-primary">{{details.date_vente}}</div>
+                        </div>
+                
+                  
+                  <div class="row justify-content mt-4">
+                    <div class="text-center ">
+                    
+                      <a href="{% url 'vente' %}" class=" btn btn-danger"> Retour</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-md-2"></div>
+</div>
+
+    
+</div>
+
+
+{% endblock %}

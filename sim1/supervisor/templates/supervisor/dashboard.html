@@ -1,0 +1,544 @@
+{% extends 'supervisor/index.html' %}
+
+
+
+{% block content %}
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+      <div class="col-lg-8 mb-4 order-0">
+        <div class="card">
+          <div class="d-flex align-items-end row">
+            <div class="col-sm-12">
+              <div class="card-body">
+                <h5 class="card-title  text-primary"> {% if heure < 12 %}Bonjour {% else %} Bonsoir {% endif %} <b>{{user.username}}</b> 🎉</h5>
+                <p class="mb-4">
+                  Vous etes un superviseur des activités ceci est votre <span class="fw-bold">dashboard</span>. Il vous permettra une supervision complete des activites de votre structure
+                 .
+                </p>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 order-1">
+        <div class="row">
+          <div class="col-lg-6 col-md-12 col-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title d-flex align-items-start justify-content-between">
+                  
+                  
+                </div>
+                <span class="fw-bold text-primary d-block mb-1">Clients</span>
+                <h3 class="card-title mb-2">{{client}}</h3>
+                <div class="row">     
+                  <div class="col-md-12"><a href="{% url 'export_data_client_excel' %}" class="btn btn-success btn-sm "><i class="bx bx-download"></i> excel</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12 col-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title d-flex align-items-start justify-content-between">
+                  
+                  
+                </div>
+                <span class="fw-bold text-primary d-block mb-1">Vendeurs</span>
+                <h3 class="card-title text-nowrap  mb-1">{{vendeur}}</h3>
+                <div class="row">     
+                  <div class="col-md-12"><a href="{% url 'export_data_vendeur_excel' %}" class="btn btn-success btn-sm "><i class="bx bx-download"></i> excel</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Total Revenue -->
+      <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+        <div class="card">
+          <div class="row row-bordered g-0">
+
+            <div class="col-md-5">
+              <h5 class="card-header m-0 me-2 pb-3" style="color: #D9042B;">Classement</h5>
+              <!-- <div id="totalRevenueChart" class="px-2">loljjsj</div> -->
+              <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-lg-8">
+                  
+                  
+                  <h5 class="card-header m-0 me-2 pb-3">Top 5 produits</h5>
+                  <table class="table">
+                    {% for top in top_produit_5 %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td class="text-primary fw-bolder"><small>{{top.produit}}</small></td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                </div>
+                <div class="col-md-2"></div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="card-body">
+                <div class="text-center">
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-sm btn-outline-primary "
+                      type="button"
+                      id="growthReportId"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      {{an}}
+                    </button>
+                    
+                  </div>
+                </div>
+              </div>
+              <!-- <div id="growthChart"></div> -->
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                  <canvas id="myChart" height="250" ></canvas>
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+              
+               <div class="mt-5"></div>
+              <div class="text-center fw-semibold pt-3 mb-2"><h2 style="color: #D9042B;">Chiffre d'affaire</h2> </div>
+
+              <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
+                <div class="d-flex">
+                  <div class="me-2">
+                    <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <small>2021</small>
+                    <h6 class="mb-0">{{total_anuel2021}} CFA</h6>
+                  </div>
+                </div>
+                <div class="d-flex">
+                  <div class="me-2">
+                    <span class="badge bg-label-success p-2"><i class="bx bx-dollar text-success"></i></span>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <small>2022</small>
+                    <h6 class="mb-0">{{total_anuel2022}} CFA</h6>
+                  </div>
+                </div>
+                <div class="d-flex">
+                  <div class="me-2">
+                    <span class="badge bg-label-info p-2"><i class="bx bx-dollar text-info"></i></span>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <small>2023</small>
+                    <h6 class="mb-0">{{total_anuel2023}} CFA</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card mt-4">
+          <div class="row mt-4">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div class="card h-100">
+                <!--  -->
+                <canvas id="line" height="350"></canvas>
+              </div>
+              
+            </div>
+            <div class="col-md-1"></div>
+            
+          </div>
+        </div>
+        
+     
+
+
+
+      </div>
+      <!--/ Total Revenue -->
+      <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
+        <div class="row">
+          <div class="col-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title d-flex align-items-start justify-content-between">
+                 
+                  
+                </div>
+                <span class="d-block  text-primary fw-bold mb-1"><small>Gestionnaires</small></span>
+                <h3 class="card-title text-nowrap mb-2">{{gestionnaire}}</h3>
+                <div class="row">     
+                  <div class="col-md-12"><a href="{% url 'export_data_gestion_excel' %}" class="btn btn-success btn-sm "><i class="bx bx-download"></i> excel</a></div>
+                </div>
+                
+                <!-- <small class="text-danger fw-semibold"><i class=""></i></small> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title d-flex align-items-start justify-content-between">
+                  
+                  
+                </div>
+                <span class="fw-semibold text-primary d-block mb-1">Produits</span>
+                <h3 class="card-title mb-2">{{produit}}</h3>
+                <!-- <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i></small> -->
+                <div class="row">     
+                  <div class="col-md-12"><a href="{% url 'export_data_produit_excel' %}" class="btn btn-success btn-sm "><i class="bx bx-download"></i> excel</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+          <div class="col-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
+                  <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
+                    <div class="card-title">
+                      <h5 class="text-nowrap text-primary mb-2">CA du jour</h5>
+                      <span class="badge bg-label-warning rounded-pill">Aujourd'hui</span>
+                    </div>
+                    <div class="mt-sm-auto">
+                      {% if croissance_jour > 0 %}
+                      <small class="text-success text-nowrap fw-semibold"
+                        ><i class="bx bx-chevron-up"></i> {{croissance_jour}} %</small
+                      >
+                      {% elif croisssance_jour < 0 %}
+
+                      <small class="text-danger text-nowrap fw-semibold"
+                        ><i class="bx bx-chevron-down"></i> {{croissance_jour}} %</small
+                      >
+
+                      {% elif croissance_jour == 0 %}
+
+                      <small class="text-primary text-nowrap fw-semibold"
+                        ><i class="bx bx-chevron-right"></i> {{croissance_jour}} %</small
+                      >
+
+                      {% endif %}
+                      <h4 data-nom="CA_jour" class="mb-0">{{total_jour}} cfa</h4>
+                    </div>
+                  </div>
+                  <!-- <div id="profileReportChart"></div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
+                  <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
+                    <div class="card-title">
+                      <h5 class="text-nowrap text-center text-primary mb-2">CA mesuel</h5>
+                      <span class="badge bg-label-warning rounded-pill">ce mois</span>
+                    </div>
+                    <div class="mt-sm-auto">
+                      {% if croissance_mois > 0 %}
+                      <small class="text-success text-nowrap fw-semibold"
+                        ><i class="bx bx-chevron-up"></i> {{croissance_mois}} %</small
+                      >
+                      {% elif croisssance_mois < 0 %}
+
+                      <small class="text-danger text-nowrap fw-semibold"
+                        ><i class="bx bx-chevron-down"></i> {{croissance_mois}} %</small
+                      >
+
+                      {% elif croissance_mois == 0 %}
+
+                      <small class="text-primary text-nowrap fw-semibold"
+                        ><i class="bx bx-chevron-right"></i> {{croissance_mois}} %</small
+                      >
+
+                      {% endif %}
+                      <h4 class="mb-0">{{total_mois}} cfa</h4>
+                    </div>
+                  </div>
+                  <!-- <div id="profileReportChart"></div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
+                  <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
+                    <div class="card-title">
+                      <h5 class="text-nowrap text-primary text-center mb-2">Chiffre d'Affaire Anuel</h5>
+                      <span class="badge bg-label-warning rounded-pill">{{an}}</span>
+                    </div>
+                    <div class="mt-sm-auto">
+                      {% if croissance < 0 %}
+                      <small class="text-danger text-nowrap fw-semibold"><i class="bx bx-chevron-down"></i> {{croissance}} %</small>
+                      {% elif croissance > 0 %}
+                      <small class="text-success text-nowrap fw-semibold"><i class="bx bx-chevron-up"></i> {{croissance}} %</small>
+                      {% elif croissance == 0 %}
+                      <small class="text-primary text-nowrap fw-semibold"><i class="bx bx-chevron-right"></i> {{croissance}} %</small>
+                      {% endif %}
+                      <h4 class="mb-0">{{total_anuel2024}} cfa</h4>
+                    </div>
+                  </div>
+                  
+                  <div>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+       
+          <div class="col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
+                  <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
+                    <div class="card-title">
+                      <h5 class="text-nowrap text-danger text-center mb-2">Ventes annulées</h5>
+                      <span class="badge bg-label-warning rounded-pill">{{an}}</span>
+                    </div>
+                    <div class="mt-sm-auto">
+                      
+                      <div class="row">
+                        <div class="col-md-2"><h2 class="mb-0"> {{vente_annuler}}  </h2></div>
+                        <div class="col-md-10"><a href="{% url 'export_data_vente_annuler_excel' %}" class="btn btn-success "><i class="bx bx-download"></i> excel</a></div>
+                        
+                      </div>
+
+                      
+                    </div>
+                  </div>
+                  
+                  <div>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-4">
+            <div class="card">
+              <h4 class="text-nowrap  text-primary text-center">Top 5  Clients </h4>
+              <!-- <div class="card-body">
+                <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
+                  <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between"> -->
+                    <!-- <div class="card-title">
+                      <h5 class="text-nowrap text-center mb-2">produit en vogue</h5>
+                      
+                    </div> -->
+                    
+                   
+
+                      <table class="table">
+                        {% for top in top_client %}
+                        <tr>
+                          <td>{{ forloop.counter }}</td>
+                          <td class=" fw-bolder">{{top.nom}}</td>
+                        </tr>
+                        {% endfor %}
+                      </table>
+                     
+                    
+                  </div>
+                  
+                  <div>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+            <div class="card">
+            <h6 class="text-primary mt-3">CHIFFRE MENSUEL </h6>  
+            
+            <div class="card-body">
+            
+              <canvas id="temps" height="80"></canvas>
+            </div>
+            </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+      
+
+  
+
+ 
+
+
+
+{% endblock%}
+
+{% block script %}
+
+<script>
+  // In your JavaScript code
+  const ctx = document.getElementById('myChart').getContext('2d');
+  const temps = document.getElementById('temps').getContext('2d');
+  const Aujourdhui = "{{total_jour}}";
+  const hier = "{{total_jour_prec}}";
+  const l = "{{lundi}}"
+  const m = "{{mardi}}"
+  const me = "{{mercredi}}"
+  const j = "{{jeudi}}"
+  const v = "{{vendredi}}"
+  const s = "{{samedi}}"
+
+  const jan = "{{janvier}}"
+  const fev = "{{fev}}"
+  const mars= "{{mars}}"
+  const avril = "{{avril}}"
+  const mais = "{{mai}}"
+  const juin = "{{juin}}"
+  const juillet = "{{juillet}}"
+  const aout = "{{aout}}"
+  const septembre = "{{sep}}"
+  const octobre = "{{oct}}"
+  const nov = "{{nov}}"
+  const dec = "{{dec}}" 
+
+  const janB = "{{janvierB}}"
+  const fevB = "{{fevB}}"
+  const marsB= "{{marsB}}"
+  const avrilB = "{{avrilB}}"
+  const maisB = "{{maiB}}"
+  const juinB = "{{juinB}}"
+  const juilletB = "{{juilletB}}"
+  const aoutB = "{{aoutB}}"
+  const septembreB = "{{sepB}}"
+  const octobreB = "{{octB}}"
+  const novB = "{{novB}}"
+  const decB = "{{decB}}" 
+
+  const mon_canvas = document.getElementById('line').getContext('2d');
+  
+  
+
+    // Handle potential errors during data retrieval
+    
+  const data = {
+    labels: [ 'hier', 'Aujourdhui'],
+    datasets: [{
+      label: 'Chiffre de vente',
+      data: [hier, Aujourdhui],
+      backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+    borderWidth: 1
+    }]
+  };
+
+  const options = {
+    // Chart.js options here
+  };
+
+  const myChart = new Chart(ctx, {
+    type: 'bar', // Replace with desired chart type
+    data: data,
+    options: options,
+  });
+
+
+  // lineplot
+
+
+  const donne = {
+    labels: [ 'lundi', 'mardi','Mercredi','jeudi','vendredi','samedi'],
+    datasets: [{
+      label: 'Chiffre des ventes de la semaine',
+      data: [l,m,me,j,v,s],
+      borderColor: 'rgb(75, 192, 192)',
+
+      tension: 0.1,
+    }]
+  };
+
+  
+  const line = new Chart(mon_canvas, {
+    type: 'line', // Replace with desired chart type
+    data: donne,
+    options: options,
+  });
+
+  //pie
+
+  
+  // lineplot
+
+
+  const donnee_temps = {
+    labels: [ 'janvier', 'fevrier','Mars','avril','Mai','juin',"juillet","aout","septembre","octobre","novembre","decembre"],
+    datasets: [{
+      label: '2024',
+      data: [jan,fev,mars,avril,mais,juin,juillet,aout,septembre,octobre,nov,dec],
+      
+      borderColor: '#D9042B',
+      backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+    ],
+      tension: 0.1,
+    }]
+  };
+
+  const data2 = {
+      labels:  [ 'janvier', 'fevrier','Mars','avril','Mai','juin',"juillet","aout","septembre","octobre","novembre","decembre"],
+      datasets: [{
+        label: '2023',
+        data: [janB,fevB,marsB,avrilB,maisB,juinB,juilletB,aoutB,septembreB,octobreB,novB,decB],
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+      }]
+    };
+
+  
+  const temp = new Chart(temps, {
+    type: 'line', // Replace with desired chart type
+    data: donnee_temps,
+    options: options,
+  });
+
+    temp.data.datasets.push(data2.datasets[0]); // Assurez-vous que les labels correspondent
+    temp.update(); 
+
+// method ajax
+
+
+  
+
+  
+
+  
+</script>
+{% endblock  %}

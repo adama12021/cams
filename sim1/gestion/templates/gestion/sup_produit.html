@@ -1,0 +1,39 @@
+{% extends 'gestion/index.html' %}
+{% block content %}
+<div class= "text-center">
+    
+      
+         <!-- Basic Layout -->
+        <div class="row mt-5">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+         <div class="col-xxl">
+            <div class="card mb-4">
+              <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0">Supprimer</h5>
+                
+              </div>
+              <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <label class="text-center col-form-label" for="basic-default-name">Etes vous sur de vouloir suprimer le produit <b> "{{produits.nom_produit}}"</b> </label>
+                      </div>          
+                  <div class="row justify-content">
+                    <div class=" text-center">
+                      <button type="submit" class="btn btn-danger">supprimer</button>
+                      <a href="{% url 'ges_produit' %}" class=" btn btn-primary"> Retour</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-md-2"></div>
+</div>
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends 'gestion/index.html' %}
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+      <h3 class="col-sm-10   fw-bold"  for="basic-default-email">Verifier votre stock</h3>
+    
+      <form class="fw-bold py-3 mb-1" method="post">
+        {% csrf_token %}
+        <div class=" mb-3 mt-3" >
+           <div class="row">
+            
+            <div class="col-md-2">
+              <div class="input-group input-group-merge">
+                <input
+                  type="text"
+                  id="basic-default-email"
+                  class="form-control"
+                  placeholder="saisir produit"
+                  aria-describedby="basic-default-email2"
+                  name="produit"
+                  
+                /> 
+
+              </div>
+              </div>
+              
+              <div class="col-md-2">
+                <div class="input-group input-group-merge">
+                  <input
+                    type="number"
+                    id="basic-default-email"
+                    class="form-control"
+                    placeholder="quantité"
+                    aria-describedby="basic-default-email2"
+                    name="quantite"
+                    
+                  /> 
+
+                </div>
+            </div>
+
+            <div class="col-md-4">
+              
+                <div class="input-group">
+                  <select class="form-control" name="produit_liste"  id="ratio-select" aria-label="Select ratio">
+                    <option value="" selected >------------- choisir un produit  --------------</option>                      
+                        {% for produit in prod %}
+                        <option value="{{produit.nom_produit}}">{{produit.nom_produit}}</option>
+                        {% endfor %}
+                        
+                  </select>
+                </div>
+            
+          </div>
+
+
+            </div>
+            </div>
+    
+    <input type="submit"  class="btn btn-primary right mt-3" value="Recherche" >
+    <a href="{% url 'stock' %}"  class="btn btn-primary right mt-3"  >tout voir</a>
+    <a href="{% url 'gestionH' %}" class="btn btn-danger right mt-3" >retour</a>
+</form>
+      <h4 class="fw-bold py-3 mb-1"><span class="text-muted fw-light">Stock /</span>Quantité ({{taille}})</h4>
+      
+<div class="card text-center mt-3">
+   
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Produit</th>
+            <th>Quantité Actu</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        {% if produits %}
+   
+        <tbody class="table-border-bottom-0">
+          {% for produit in produits %}
+          <tr>
+            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{produit.nom_produit}}</strong></td>
+            {% if produit.quantite < 10 %}
+            <td><span class="badge bg-label-danger me-1">{{ produit.quantite}}</span></td>
+            {% else %}
+            <td><span class="badge bg-label-primary me-1">{{produit.quantite}}</span></td>
+            {% endif %}
+            <td>
+              <div class="dropdown">
+                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                  <i class="bx bx-dots-vertical-rounded"></i>
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'modif_stock' produit.id_produit %}"
+                    ><i class="bx bx-edit-alt me-1"></i> Refaire le stock </a>
+                 
+                </div>
+              </div>
+            </td>
+          </tr>
+         {% endfor %}
+         
+         
+        </tbody>
+
+        {% else %}
+
+        <tbody class="table-border-bottom-0">
+          {% for stock in stocks %}
+          <tr>
+            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{stock.id_produit_s.nom_produit}}</strong></td>
+            {% if stock.quantite_s < 10 %}
+            <td><span class="badge bg-label-danger me-1">{{stock.quantite_s}}</span></td>
+            {% else %}
+            <td><span class="badge bg-label-primary me-1">{{stock.quantite_s}}</span></td>
+            {% endif %}
+            <td>
+              <div class="dropdown">
+                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                  <i class="bx bx-dots-vertical-rounded"></i>
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'modif_stock' stock.id_produit_s.id_produit %}"
+                    ><i class="bx bx-edit-alt me-1"></i> Refaire le stock </a>
+                 
+                </div>
+              </div>
+            </td>
+          </tr>
+         {% endfor %}
+         
+         
+        </tbody>
+        {% endif %}
+        
+      </table>
+    </div>
+  </div>
+  </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'gestion/index.html' %}
+{% load static%}
+
+{% block content %}
+
+
+
+<div class="content-wrapper">
+  <!-- Content -->
+
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-primary fw-bold fw-light">Vos actions </span>/ Vos missions</h4>
+
+    <!-- Examples -->
+    <div class="row mb-5">
+      <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card h-100">
+          <img class="card-img-top" src=" {% static 'assets/img/photo/vegetables-752153_1280.jpg' %}" alt="Card image cap" />
+          <div class="card-body">
+            <h5 class="card-title">De nouveau Produit en vue?</h5>
+            <p class="card-text">
+              Ajouter un nouveau produit!
+            </p>
+            <a href="#" class="btn btn-outline-primary">Ajouter</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card h-100">
+          <img class="card-img-top" src="{% static 'assets/img/photo/truck-6488011_1280.jpg' %}" height="205" alt="Card image cap" />
+          <div class="card-body">
+            <h5 class="card-title">Pas assez de produit?</h5>
+            <p class="card-text">
+              Passer votre commande.
+            </p>
+            <a href="#" class="btn btn-outline-primary">Commander</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-4 mb-3">
+        <div class="card h-100">
+          <img class="card-img-top" src="{% static 'assets/img/photo/archive-1850170_1280.jpg' %}" alt="Card image cap" />
+          <div class="card-body">
+            <h5 class="card-title">Surveillez votre stock !</h5>
+            <p class="card-text">
+              Mon stock.
+            </p>
+            <a href="{% url 'stock' %}" class="btn btn-outline-primary">Ajouter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Examples -->
+
+    <!-- Content types -->
+    
+       
+     
+
+
+{% endblock %}

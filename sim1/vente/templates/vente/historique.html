@@ -1,0 +1,89 @@
+{% extends 'vente/index.html'%}
+{% block content %}
+
+
+<div class="content-wrapper mt-4">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h3 class="col-sm-10  text-nowrap fw-bold" for="basic-default-email">Choississez une date pour laquelle vous aimeriez voir les ventes</h3>
+        <form class="fw-bold py-3 mb-1" method="post">
+            {% csrf_token %}
+            <div class=" mb-3 mt-3" >
+                <label class="col-sm-2 col-form-label fw-bold" for="basic-default-email">Date</label>
+                <div class="col-sm-10">
+                  <div class="input-group input-group-merge">
+                    <input
+                      type="date"
+                      id="basic-default-email"
+                      class="form-control"
+                      placeholder="12"
+                      aria-describedby="basic-default-email2"
+                      name="date"
+                      required
+                    />
+                    
+                  </div>
+                  
+                </div>
+        
+        <input type="submit"  class="btn btn-primary right mt-3" value="voir les Ventes" >
+        <a href="#" class="btn btn-danger right mt-3" >retour</a>
+    </form>
+   
+    
+    <!-- Content -->
+
+    
+      <h4 class="fw-bold py-5 mb-0">{% if ventes  %} Ventes du ({{date}})  {% else%} vente{% endif %}</h4>
+      {% if ventes %}
+      <a href="{% url 'vente' %}" class="btn btn-primary right" >Effectuer une vente</a>
+      <a href="#" class="btn btn-primary right" >{% if taille == 1 %} 1 vente {% else %} {{taille}} ventes {%endif%}</a>
+      
+
+<div class="card text-center mt-3">
+
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Client</th>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Total</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          {% for vente in ventes %}
+          <tr>
+            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{vente.id_client.nom}} {{vente.id_client.prenom}}</strong></td>
+            <td>{{vente.id_produit.nom_produit}}</td>
+            <td>
+              {{vente.quantite_vendu}}
+            </td>
+            <td><span class="badge bg-label-primary me-1">{{vente.prix_total}}</span></td>
+            <td>
+              <div class="dropdown">
+                
+                  
+                   {{vente.date_vente}}
+                </button>
+              
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+         
+         
+         
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% else %}
+  <div class="text-center text-primary ">pas de ventes effecuées
+  </div>
+  {% endif %}
+  </div>
+  </div>
+
+{% endblock %}

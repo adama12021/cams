@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Camso Corps</title>
 
     <meta name="description" content="" />
 
@@ -75,7 +75,7 @@
             <div class="card-body">
               <!-- Logo -->
               <div class="app-brand justify-content-center">
-                <a href="index.html" class="app-brand-link gap-2">
+                <a href="#" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
                     <svg
                       width="25"
@@ -136,8 +136,7 @@
               </div>
               <!-- /Logo -->
               {% if messages %}
-               <h1 class="text-danger text-center">{{messages}}</h1>
-              
+               <h3 class="text-danger text-center">{{messages}}</h3>
               {% else %}
               <h4 class="mb-2">Bienvenue à vous 👋</h4>
               <p class="mb-4">Veuillez vous connectez</p>
@@ -145,7 +144,7 @@
               <form id="formAuthentication" class="mb-3"  method="post">
                 {% csrf_token %}
                 <div class="mb-3">
-                  <label for="text" class="form-label">Username</label>
+                  <label for="text" class="form-label">Votre Username</label>
                   <input
                     type="text"
                     class="form-control"
@@ -158,7 +157,7 @@
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
-                    <label class="form-label" for="password">Mot de pass</label>
+                    <label class="form-label" for="password">Votre Mot de passe</label>
                     <a href="{% url 'recup' %}">
                       <small>mot de pass oublier?</small>
                     </a>
@@ -178,8 +177,8 @@
                 </div>
                 <div class="mb-3">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="remember-me" />
-                    <label class="form-check-label" for="remember-me"> Se rappeller de moi </label>
+                    
+                    
                   </div>
                 </div>
                 <div class="mb-3">

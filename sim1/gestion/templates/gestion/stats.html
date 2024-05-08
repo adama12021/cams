@@ -185,9 +185,13 @@
           <div class="col-6 mb-4">
             <div class="card">
               <div class="card-body">
-                
                 <span class="fw-semibold d-block mb-1">stock presque null</span>
-                <h3 class="card-title text-danger mb-2">{{stock_pnull}}</h3>
+                <div class="row">
+                  <div class="col-md-2"> <h3 class="card-title text-danger mb-2">{{stock_pnull}}</h3> </div>
+                  <div class="col-md-8"> <a href="{% url 'produit_null' %}" class="btn btn-success btn-sm">  données  </a>
+                  </div>
+                 
+                </div>
                
               </div>
             </div>

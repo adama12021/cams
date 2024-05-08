@@ -24,9 +24,9 @@ def gestion_home(request):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "vendeur":
-        return redirect('vente_home')
+        return redirect('vente_stats')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     return render(request,'gestion/home.html')
 
@@ -35,9 +35,9 @@ def ajout_stock(request):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "vendeur":
-        return redirect('vente_home')
+        return redirect('vente_stats')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     return render(request, 'gestion/inscription.html')
 
@@ -46,12 +46,12 @@ def stock(request):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "vendeur":
-        return redirect('vente_home')
+        return redirect('vente_stats')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
-    stock = Stock.objects.prefetch_related('id_produit_s').all()
-    prod = Produit.objects.all()
+    stock = Stock.objects.prefetch_related('id_produit_s').filter(id_produit_s__archiver = False)
+    prod = Produit.objects.filter(archiver = False)
     produits = ""
     taille = len(stock)
     if request.method == "POST":
@@ -63,7 +63,8 @@ def stock(request):
         q_nom = Q(nom_produit__icontains=nom_produit) if nom_produit else Q()
         q_quantite = Q(quantite=quantite) if quantite else Q()
         q_liste_produit = Q(nom_produit=liste) if liste else Q()
-        produits = Produit.objects.filter(q_nom | q_quantite | q_liste_produit)
+        archiver = Q(archiver = False) if archiver else Q()
+        produits = Produit.objects.filter((q_nom | q_quantite | q_liste_produit) & archiver)
         taille = len(produits)
     
     return render(request,'gestion/stock.html', {'stocks':stock,'prod':prod ,'produits':produits, 'taille':taille})
@@ -76,11 +77,11 @@ def produit(request):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "vendeur":
-        return redirect('vente_home')
+        return redirect('vente_stats')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
-    produit = Produit.objects.all()[:50]
+    produit = Produit.objects.filter(archiver = False)[:50]
     page =  request.get_full_path()
     print(page)
     if request.method == "POST":
@@ -95,14 +96,41 @@ def produit(request):
     taille = len(produit)
     return render(request,'gestion/produit.html',{'produits':produit, 'taille':taille, 'page':page})
 
+
+@login_required
+def archive(request):
+    person = SupervisorUtilisateur.objects.get(id=request.user.id)
+    if person.role == "vendeur":
+        return redirect('vente_stats')
+    elif person.role == 'superviseur':
+        return redirect('dashboard')
+    
+    produit = Produit.objects.filter(archiver = True)[:50]
+    if request.method == "POST":
+        nom_produit = request.POST['produit']
+        prix = request.POST['prix']
+        cat = request.POST['cat']
+        archiver = True
+        
+        q_nom = Q(nom_produit__icontains=nom_produit) if nom_produit else Q()
+        q_prix = Q(p_unitaire__icontains=prix) if prix else Q()
+        q_cat = Q(categorie=cat) if cat else Q()
+        archiver = Q(archiver = True) if archiver else Q()
+        produit = Produit.objects.filter((q_nom | q_prix | q_cat) & archiver)
+    taille = len(produit)
+    return render(request,'gestion/archive_page.html',{'produits':produit, 'taille':taille})
+
+
+
+
 @login_required
 def sup_prod(request, pk):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "vendeur":
-        return redirect('vente_home')
+        return redirect('vente_stats')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     produit = Produit.objects.get(id_produit = pk)
     if (request.method == 'POST'):
@@ -115,9 +143,9 @@ def modif_prod(request, pk):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "vendeur":
-        return redirect('vente_home')
+        return redirect('vente_stats')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     produit = Produit.objects.get(id_produit = pk)
     quantite = produit.quantite
@@ -125,9 +153,9 @@ def modif_prod(request, pk):
         prods = request.POST['produit']
         prix = request.POST['prix']
         categorie = request.POST['categorie']       
-        produits = prods.lower()
+        produits = prods
     
-        categorie = categorie.lower()
+        
         produit.p_unitaire = prix
         produit.quantite = quantite
         produit.nom_produit = produits
@@ -137,18 +165,50 @@ def modif_prod(request, pk):
     return render(request, 'gestion/modif_produit.html', {'produits':produit})
 
 @login_required
+def archiver_prod(request, pk):
+    # verification de role
+    person = SupervisorUtilisateur.objects.get(id=request.user.id)
+    if person.role == "vendeur":
+        return redirect('vente_stats')
+    elif person.role == 'superviseur':
+        return redirect('dashboard')
+    
+    produit = Produit.objects.get(id_produit = pk)   
+    produit.archiver =  True  
+    produit.save()
+    return redirect('ges_produit')
+    
+
+
+@login_required
+def desarchiver_prod(request, pk):
+    # verification de role
+    person = SupervisorUtilisateur.objects.get(id=request.user.id)
+    if person.role == "vendeur":
+        return redirect('vente_stats')
+    elif person.role == 'superviseur':
+        return redirect('dashboard')
+    
+    produit = Produit.objects.get(id_produit = pk)   
+    produit.archiver =  False  
+    produit.save()
+    return redirect('archive_page')    
+
+@login_required
 def modif_stock(request, pk):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "vendeur":
-        return redirect('vente_home')
+        return redirect('vente_stats')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     stock = Stock.objects.get(id_produit_s = pk) 
     Prod = Produit.objects.get(id_produit = pk)
     if (request.method == 'POST'):
-        quantite = request.POST['quantite']      
+        quantite = request.POST['quantite']
+        if int(quantite)< 0:
+                return render(request, 'gestion/modif_stock.html', {'stocks':stock, "err":"taper une valeur positive"})  
         stock.quantite_s =  stock.quantite_s + int(quantite)
         Prod.quantite = Prod.quantite + int(quantite)
         stock.save()
@@ -183,9 +243,9 @@ def ajout_produit(request):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "vendeur":
-        return redirect('vente_home')
+        return redirect('vente_stats')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     if request.method == "POST":
         produit = request.POST['produit']
@@ -221,18 +281,18 @@ def stat(request):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "vendeur":
-        return redirect('vente_home')
+        return redirect('vente_stats')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     today = datetime.now()
-    produit = Produit.objects.all()
+    produit = Produit.objects.filter(archiver = False)
     
 
     Categorie = Produit.objects.values('categorie').distinct().count()
     # Categorie = Categorie['categorie__count']
 
-    stock_null = Produit.objects.filter(quantite = 0)
-    stock_pnull = Produit.objects.filter(quantite__gte=1, quantite__lte=20)
+    stock_null = Produit.objects.filter(quantite = 0, archiver=False)
+    stock_pnull = Produit.objects.filter(quantite__gte=1, quantite__lte=20, archiver = False)
 
     Top_produit = VentesAnalyse.objects.values('produit').annotate(total=Count('produit')).order_by('-total')[:1]
 
@@ -284,7 +344,7 @@ def stat(request):
 
     heure = today.hour
 
-    total_quantity = Stock.objects.all().aggregate(Sum('quantite_s'))
+    total_quantity = Stock.objects.prefetch_related('id_produit_s').filter(id_produit_s__archiver = False).all().aggregate(Sum('quantite_s'))
     total_quantity = total_quantity['quantite_s__sum']
 
     
@@ -421,9 +481,9 @@ def access(request):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "vendeur":
-        return redirect('vente_home')
+        return redirect('vente_stats')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     return render(request,'gestion/acces.html')
 
@@ -435,9 +495,9 @@ def signout(request):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "vendeur":
-        return redirect('vente_home')
+        return redirect('vente_stats')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     logout(request)
     return redirect('login')
@@ -469,7 +529,15 @@ def signout(request):
 #     return(request,"gestion/try.html" )
 
 
+
+
+
 def export_data_to_csv(request):
+    person = SupervisorUtilisateur.objects.get(id=request.user.id)
+    if person.role == "vendeur":
+        return redirect('vente_stats')
+    elif person.role == 'superviseur':
+        return redirect('dashboard')
     # Retrieve data from the database (replace with your actual data retrieval logic)
     data = Produit.objects.all()  # Assuming this function returns a list of data rows
 
@@ -499,6 +567,11 @@ def export_data_to_csv(request):
 
 
 def export_data_to_excel(request):
+    person = SupervisorUtilisateur.objects.get(id=request.user.id)
+    if person.role == "vendeur":
+        return redirect('vente_stats')
+    elif person.role == 'superviseur':
+        return redirect('dashboard')
     # Retrieve data from the database
     data = Produit.objects.all()  # Assuming this is a QuerySet of Produit models
 
@@ -518,6 +591,38 @@ def export_data_to_excel(request):
     # Prepare the Django response
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
     response['Content-Disposition'] = f'attachment; filename="produit.xlsx"'
+
+    # Write Excel data to the response
+    workbook.save(response)
+
+    return response
+
+
+def export_data_produit_null_to_excel(request):
+    person = SupervisorUtilisateur.objects.get(id=request.user.id)
+    if person.role == "vendeur":
+        return redirect('vente_stats')
+    elif person.role == 'superviseur':
+        return redirect('dashboard')
+    # Retrieve data from the database
+    data = Produit.objects.filter(quantite__gte=1, quantite__lte=20, archiver = False)  # Assuming this is a QuerySet of Produit models
+
+    # Create a new Excel workbook
+    workbook = Workbook()
+    worksheet = workbook.active  # Get the active worksheet
+
+    # Write header row
+    header = ['id', 'produit', 'categorie', 'prix', 'quantite']
+    worksheet.append(header)
+
+    # Write data rows
+    for product in data:
+        row_data = [product.id_produit, product.nom_produit, product.categorie, product.p_unitaire, product.quantite]
+        worksheet.append(row_data)
+
+    # Prepare the Django response
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = f'attachment; filename="produit_vide.xlsx"'
 
     # Write Excel data to the response
     workbook.save(response)

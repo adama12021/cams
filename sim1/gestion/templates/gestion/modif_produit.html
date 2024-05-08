@@ -1,17 +1,13 @@
 {% extends 'gestion/index.html' %}
 {% block content %}
+ 
+<div class="content-wrapper">
+  <!-- Content -->
 
-{% if messages %}
-  <ul class="list-group">
-    {% for message in messages %}
-      <li class="list-group-item alert alert-{{ message.tags }}">
-        {{ message }}
-      </li>
-    {% endfor %}
-  </ul>
-{% endif %}
+  <div class="container-xxl flex-grow-1 container-p-y">
 
-<h1 class="text-center mt-2">Modification produit</h1>
+
+<h1 class="text-center text-primary mt-2">Modification du produit</h1>
 <div class= "text-center">
    
      
@@ -24,7 +20,7 @@
             <div class="card mb-4">
               <div class="card-header d-flex align-items-center justify-content-between">
                 <h5 class="mb-0">Modification</h5>
-                <small class="text-muted float-end">Stock</small>
+                <small class="text-muted float-end">Produit</small>
               </div>
               <div class="card-body">
 
@@ -42,51 +38,10 @@
                     <label class="col-sm-2 col-form-label" for="ratio-select" >Categorie</label>
                     <div class="col-sm-10">
                       <div class="input-group">
-                        <select class="form-control" name="categorie" id="ratio-select" aria-label="Select ratio">
-                        <option value="{{produits.categorie}}" selected>
+                     
+                        <input type="text" class="form-control"  name="categorie" required value="{{produits.categorie}}" selected>
 
-                          {% if produits.categorie == 'aliments' %}
-                          Aliments 
-                          {% endif %}
-                          {% if produits.categorie == 'electronique' %}
-                          Electronique
-                          {% endif %}
-                          {% if produits.categorie == 'eoissons' %}
-                          Boissons
-                          {% endif %}
-                          {% if produits.categorie == 'Vetements'%}
-                          Vetements
-                          {% endif %}
-                          {% if produits.categorie == 'education' %}
-                          Education
-                          {% endif %}   
-                        </option>
-                        {% if produits.categorie == 'electronique' %}
-                        <option value="Aliments" selected>Aliments</option>
-                        <option value="Boissons">Boissons</option>
-                        <option value="Electronique">Vetements</option>
-                        <option value="Education">Education</option>
-                        {% elif produits.categorie == 'boissons'  %}
-                        <option value="Aliments" selected>Aliments</option>
-                        <option value="Electronique">Electronique</option>
-                        <option value="Electronique">Vetements</option>
-                        <option value="Education">Education</option>
-                        {% elif produits.categorie == 'vetements' %}
-                        <option value="Aliments" selected>Aliments</option>
-                        <option value="Electronique">Electronique</option>
-                        <option value="Boissons">Boissons</option>
-                        <option value="Education">Education</option>
-                        {% elif produits.categorie == 'education' %}
-                        <option value="Aliments" selected>Aliments</option>
-                        <option value="Electronique">Electronique</option>
-                        <option value="Boissons">Boissons</option>
-                        <option value="Electronique">Vetements</option>
-                        {% elif produits.categorie == 'aliments' %}
-                        <option value="Electronique">Electronique</option>
-                        <option value="Boissons">Boissons</option>
-                        <option value="Electronique">Vetements</option>
-                        <option value="Education">Education</option>
-                        {% endif %}
+                         
                       </select>
                       </div>
                     </div>

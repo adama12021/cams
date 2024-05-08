@@ -16,12 +16,12 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>App CAMARA</title>
+    <title>Camso Corps</title>
 
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{ static 'assets/img/favicon/favicon.ico'}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/favicon/favicon.ico' %}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -53,48 +53,6 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{% static 'assets/js/config.js' %} "></script>
 
-    <style>
-      /* Style the loader */
-.loader {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* Style the inner loader */
-.inner-loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 5px solid #fff;
-  border-top: none;
-  animation: spin 1s linear infinite;
-}
-
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Hide the loader when the page is loaded */
-
-
-    </style>
   </head>
 
   <body>
@@ -105,7 +63,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="{% url 'home_supervisor' %}" class="app-brand-link">
+            <a href="{% url 'dashboard' %}" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -174,7 +132,7 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="{% url 'home_supervisor' %}" class="menu-link">
+              <a href="{% url 'dashboard' %}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-briefcase-alt"></i>
               
                 <div data-i18n="Analytics">Superviseur</div>
@@ -192,8 +150,8 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="#" class="menu-link" >
-                    <div data-i18n="Basic">Mes accès</div>
+                  <a href="{% url 'acces_superviseur' %}" class="menu-link" >
+                    <div data-i18n="Basic">Info compte</div>
                   </a>
                 </li>
                 <li class="menu-item">

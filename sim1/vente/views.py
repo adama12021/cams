@@ -12,6 +12,7 @@ import csv
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 
+
 # Create your views here.
 @login_required(login_url='login')
 def vente_home(request):
@@ -20,7 +21,7 @@ def vente_home(request):
     if person.role == "gestionnaire":
         return redirect('gestionH')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     return render(request,'vente/home.html')
 
 @login_required
@@ -30,7 +31,7 @@ def vente(request):
     if person.role == "gestionnaire":
         return redirect('gestionH')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
 
     
     today = datetime.now()
@@ -49,7 +50,7 @@ def annule_vente(request, pk):
     if person.role == "gestionnaire":
         return redirect('gestionH')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     if request.method == 'POST':
         motif = request.POST['motif']
@@ -80,7 +81,7 @@ def historique(request):
     if person.role == "gestionnaire":
         return redirect('gestionH')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     vente = ""
     Date = ""
     taille=0
@@ -105,9 +106,9 @@ def vente_ajout(request):
     if person.role == "gestionnaire":
         return redirect('gestionH')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
-    produit = Produit.objects.all()
+    produit = Produit.objects.filter(archiver = False)
     client = Client.objects.all()
     messages = ""
     
@@ -139,9 +140,7 @@ def vente_ajout(request):
         stock.save()
         vente_analyse = VentesAnalyse(nom = clients.nom + ' ' + clients.prenom, prix = prix, produit = produits.nom_produit, type=produits.categorie, date = formatted_date, genre = clients.genre, id_ventes= vente, quantite = vente.quantite_vendu )
         vente_analyse.save()
-        return redirect('vente') 
-            
-          
+        return redirect('vente')       
     return render(request, 'vente/ajout_vente.html',{'produit':produit, 'client':client})
 
 @login_required
@@ -151,7 +150,7 @@ def details_vente(request, pk):
     if person.role == "gestionnaire":
         return redirect('gestionH')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     vente = Vente.objects.get(id_vente = pk)
     return render(request, 'vente/detail_vente.html', {'details':vente})
@@ -163,7 +162,7 @@ def client(request):
     if person.role == "gestionnaire":
         return redirect('gestionH')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     clients = Client.objects.all()
     nom = ""
@@ -186,12 +185,13 @@ def client(request):
 
 @login_required
 def stats(request):
+    
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
         return redirect('gestionH')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     # analyse des produits
     Top_produit = Vente.objects.prefetch_related('id_produit').values('id_produit').annotate(
@@ -405,18 +405,6 @@ def stats(request):
         samedi =total_jour
 
     heure = today.hour
-
-
-    
-    
-   
-    print(Top_profit)
-    print(Profit_journalier)
-    print(Top_produit)
-    print(Nombre_vente)
-    print(request.user.id)
-    print(somme_vente)
-    print(Top_client)
     return render(request, 'vente/stats.html', {'top_produits':Top_produit,
                                                 'top_produit_5': top_5_produit, 
                                                 'ventes':vente, 'pourcentage':int(pourcentage), 
@@ -446,7 +434,7 @@ def ajout_client(request):
     if person.role == "gestionnaire":
         return redirect('gestionH')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     if request.method == "POST":
         nom = request.POST['nom']
@@ -501,7 +489,7 @@ def sup_client(request, pk):
     if person.role == "gestionnaire":
         return redirect('gestionH')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     sup = Client.objects.get(id_client = pk)
     if request.method == 'POST':
@@ -516,7 +504,7 @@ def modidier_client(request, pk):
     if person.role == "gestionnaire":
         return redirect('gestionH')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     sup = Client.objects.get(id_client = pk)
     mat = sup.matricule
@@ -550,7 +538,7 @@ def produit(request):
     if person.role == "gestionnaire":
         return redirect('gestionH')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     produit = Produit.objects.all()
     return render(request,'vente/Produit.html', {'produits':produit})
@@ -638,7 +626,7 @@ def signout(request):
     if person.role == "gestionnaire":
         return redirect('gestionH')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     logout(request)
     return redirect('login')
 
@@ -649,7 +637,7 @@ def acces(request):
     if person.role == "gestionnaire":
         return redirect('gestionH')
     elif person.role == 'superviseur':
-        return redirect('home_supervisor')
+        return redirect('dashboard')
     
     return render(request,'vente/acces.html')
 

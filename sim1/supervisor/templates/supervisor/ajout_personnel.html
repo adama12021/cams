@@ -7,7 +7,7 @@
 
   <div class="container-xxl flex-grow-1 container-p-y">
 <h1 class="text-center mt-2">Enregistrer un nouveau personel</h1>
-<div class="content-wrapper">
+
 <div class= "text-center">
 
         
@@ -24,8 +24,8 @@
 
               </div>
               <h4>{{sms}}</h4>
-              {% if message %}
-              {{message}}
+              {% if messages %}
+              {{messages}}
               {% endif %}
               <div class="card-body">
                 <form method="POST">
@@ -33,7 +33,7 @@
                   <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" for="basic-default-name">Username</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="username" id="basic-default-name" placeholder="Camara "  required/>
+                      <input type="text" class="form-control" name="username" id="basic-default-name" placeholder="Camara12021 "  required/>
                     </div>
                   </div>
                   <div class="row mb-3">
@@ -118,11 +118,15 @@
                       <div class="input-group input-group-merge">
                         <input
                           type="password"
-                          id="basic-default-email"
+                          id="password"
                           class="form-control"
+                          aria-describedby="password"
                           name="mot"
+                          placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                           required
+
                         />
+                        <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                         </div>
                       
                     </div>
@@ -140,7 +144,7 @@
                           name="cmot"
                           required
                         />
-                      
+                        <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                       </div>
                       
                     </div>

@@ -19,6 +19,10 @@ urlpatterns = [
     path('modif_stock/<int:pk>', views.modif_stock, name='modif_stock'),
     path('stats',views.stat, name='stats'),
     path('acces', views.access, name='acces_gestion'),
+    path('archive/<int:pk>', views.archiver_prod, name='archive_prod'),
+    path('desarchive/<int:pk>', views.desarchiver_prod, name='desarchive_prod'),
+    path('archive_page', views.archive, name='archive_page'),
+    path('produit_zero.xlsx', views.export_data_produit_null_to_excel, name="produit_null")
     # path('try',views.remplisage, name='try_g')
 
 

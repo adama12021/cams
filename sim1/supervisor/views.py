@@ -24,22 +24,34 @@ import pandas as pd
 from prophet import Prophet
 from functools import wraps
 
+
+
+
 # Create your views here.
 @login_required(login_url='login')
 def home_supervisor(request):
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     return render(request,'supervisor/home.html')
+
+@login_required
+def acces(request):
+    person = SupervisorUtilisateur.objects.get(id=request.user.id)
+    if person.role == "gestionnaire":
+        return redirect('stats')
+    elif person.role == 'vendeur':
+        return redirect('vente_home')
+    return render(request,'supervisor/acces.html')
 
 @login_required
 def ajout_vendeur(request):
      # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     
@@ -55,25 +67,21 @@ def ajout_vendeur(request):
         password = request.POST['mot']
         confirmpwd = request.POST['cmot']
 
-        if SupervisorUtilisateur.objects.filter(username=username):
-            messages.add_message(request,messages.ERROR, 'Ce username est deja pris.')
-            return render(request,'supervisor/ajout_personnel.html',{'messages':messages.get_messages(request)})
+        if Utilisateur.objects.filter(username=username):
+            
+            return render(request,'supervisor/ajout_personnel.html',{'messages':'Ce username est deja pris.' })
         
-        if SupervisorUtilisateur.objects.filter(email=email):
-            messages.add_message(request,messages.ERROR, 'Ce email à deja un compte.')
-            return render(request,'supervisor/ajout_personnel.html',{'messages':messages.get_messages(request)})
+        if Utilisateur.objects.filter(email=email):
+           
+            return render(request,'supervisor/ajout_personnel.html',{'messages':'Ce email à deja un compte.'})
         if len(username)<5:
-            messages.add_message(request,messages.ERROR, 'Entrez un username plus long.')
-            return render(request,'supervisor/ajout_personnel.html',{'messages':messages.get_messages(request)})
+            return render(request,'supervisor/ajout_personnel.html',{'messages':'Entrez un username plus long.'})
         if not username.isalnum():
-            messages.add_message(request,messages.ERROR, 'le username doit conetnir des chiffres')
-            return render(request,'supervisor/ajout_personnel.html',{'messages':messages.get_messages(request)})
-
+            return render(request,'supervisor/ajout_personnel.html',{'messages':'le username doit conetnir des chiffres'})
         if password != confirmpwd:
-            messages.add_message(request,messages.ERROR, 'Mot de pass incorrect ')
-            return render(request,'supervisor/ajout_personnel.html',{'messages':messages.get_messages(request)})
+            return render(request,'supervisor/ajout_personnel.html',{'messages':'Mot de pass incorrect '})
         hash_password = make_password(password)
-        my_user = SupervisorUtilisateur.objects.create(username=username, email=email, password=hash_password)
+        my_user = Utilisateur.objects.create(username=username, email=email, password=hash_password)
         my_user.first_name =firstname
         my_user.last_name = lastname
         my_user.role = role
@@ -86,31 +94,33 @@ def ajout_vendeur(request):
 # send email when account has been created successfully
         subject = "Bienvenue à Camso corps"
         message = "Bienvenue "+ my_user.first_name + " " + my_user.last_name +"\n votre username est le suivant : "+ username + "\n votre mot de pass est le suivant :"+ password + '\n vous recevrez un autre mail de confrimation du compte veuillez gardez ces information pour vous'
-        
+  
         from_email = settings.EMAIL_HOST_USER
         to_list = [my_user.email]
         send_mail(subject, message, from_email, to_list, fail_silently=False)
+        print(my_user.email)
 
 # send the the confirmation email
-        current_site = get_current_site(request) 
-        email_suject = "Activez votre compte"
-        messageConfirm = render_to_string("supervisor/email.html", {
-            'name': my_user.first_name,
-            'domain':current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(my_user.pk)),
-            'token': generateToken.make_token(my_user)
-        })       
+        # current_site = get_current_site(request) 
+        # email_suject = "Activez votre compte"
+        # messageConfirm = render_to_string("supervisor/email.html", {
+        #     'name': my_user.first_name,
+        #     'domain':current_site.domain,
+        #     'uid': urlsafe_base64_encode(force_bytes(my_user.pk)),
+        #     'token': generateToken.make_token(my_user)
+        # })       
 
-        email = EmailMessage(
-            email_suject,
-            messageConfirm,
-            settings.EMAIL_HOST_USER,
-            [my_user.email]
-        )
+        # email = EmailMessage(
+        #     email_suject,
+        #     messageConfirm,
+        #     settings.EMAIL_HOST_USER,
+        #     [my_user.email]
+        # )
 
-        email.fail_silently = False
-        email.send()
-    return render(request,'supervisor/ajout_personnel.html')
+        # email.fail_silently = False
+        # email.send()
+        
+    return render(request,'supervisor/ajout_personnel.html',{'messages':''})
 
 
 
@@ -118,7 +128,7 @@ def ajout_vendeur(request):
 def historique(request):
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     vente = ""
@@ -141,7 +151,7 @@ def ajout_gestionnaire(request):
      # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     return render(request,'supervisor/ajout_personnel.html')
@@ -150,7 +160,7 @@ def ajout_gestionnaire(request):
 def mot(request):
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     
@@ -160,7 +170,7 @@ def mot(request):
 def oublie(request):
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     
@@ -171,7 +181,7 @@ def signout(request):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "vendeur":
-        return redirect('vente_home')
+        return redirect('stats')
     elif person.role == 'gestionnaire':
         return redirect('gestionH')
     logout(request)
@@ -182,7 +192,7 @@ def vendeur(request):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     
@@ -216,7 +226,7 @@ def gestionnaire(request):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     
@@ -246,7 +256,7 @@ def client(request):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     
@@ -272,7 +282,7 @@ def desactive_vendeur(request, pk):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     
@@ -286,7 +296,7 @@ def active_vendeur(request, pk):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     
@@ -300,7 +310,7 @@ def desactive_gestionnaire(request, pk):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     
@@ -314,7 +324,7 @@ def active_gestionnaire(request, pk):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home ')
     
@@ -328,7 +338,7 @@ def dashboard(request):
     # verification de role
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     today = datetime.now()
@@ -797,7 +807,7 @@ def test(request):
 def export_data_client_to_csv(request):
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     # Retrieve data from the database (replace with your actual data retrieval logic)
@@ -831,7 +841,7 @@ def export_data_client_to_csv(request):
 def export_data_client_to_excel(request):
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     # Retrieve data from the database
@@ -864,7 +874,7 @@ def export_data_client_to_excel(request):
 def export_data_vendeur_to_csv(request):
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     # Retrieve data from the database (replace with your actual data retrieval logic)
@@ -896,7 +906,7 @@ def export_data_vendeur_to_csv(request):
 def export_data_vendeur_to_excel(request):
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     # Retrieve data from the database
@@ -929,7 +939,7 @@ def export_data_vendeur_to_excel(request):
 def export_data_gestion_to_csv(request):
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     # Retrieve data from the database (replace with your actual data retrieval logic)
@@ -961,7 +971,7 @@ def export_data_gestion_to_csv(request):
 def export_data_gestion_to_excel(request):
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     # Retrieve data from the database
@@ -995,7 +1005,7 @@ def export_data_gestion_to_excel(request):
 def export_data_vente_to_csv(request):
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     # Retrieve data from the database (replace with your actual data retrieval logic)
@@ -1027,7 +1037,7 @@ def export_data_vente_to_csv(request):
 def export_data_vente_to_excel(request):
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     # Retrieve data from the database
@@ -1062,7 +1072,7 @@ def export_data_vente_to_excel(request):
 def export_data_vente_annuler_to_excel(request):
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     # Retrieve data from the database
@@ -1095,7 +1105,7 @@ def export_data_vente_annuler_to_excel(request):
 def export_data_vente_to_excel(request):
     person = SupervisorUtilisateur.objects.get(id=request.user.id)
     if person.role == "gestionnaire":
-        return redirect('gestionH')
+        return redirect('stats')
     elif person.role == 'vendeur':
         return redirect('vente_home')
     # Retrieve data from the database

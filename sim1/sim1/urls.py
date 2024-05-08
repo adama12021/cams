@@ -24,7 +24,7 @@ from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('home',views.home,name='home'),
+    
     path('index',views.base,name='base'),
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
     path('',views.signin,name='login'),

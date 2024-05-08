@@ -1,15 +1,12 @@
 {% extends 'gestion/index.html' %}
 {% block content %}
 
-{% if messages %}
-  <ul class="list-group">
-    {% for message in messages %}
-      <li class="list-group-item alert alert-{{ message.tags }}">
-        {{ message }}
-      </li>
-    {% endfor %}
-  </ul>
-{% endif %}
+<div class="content-wrapper">
+  <!-- Content -->
+
+  <div class="container-xxl flex-grow-1 container-p-y">
+
+
 
 <h1 class="text-center mt-2">Reapprovisonnement</h1>
 <div class= "text-center">
@@ -22,6 +19,11 @@
             <div class="card mb-4">
               <div class="card-header d-flex align-items-center justify-content-between">
                 <h5 class="mb-0">Enregistrement</h5>
+                <h6 class="text-danger text-center">
+                  {% if err %}
+                  {{err}}
+                  {% endif %}
+                </h6>
                 <small class="text-muted float-end">Stock</small>
               </div>
               <div class="card-body">
@@ -79,5 +81,6 @@
 </div>
 </div>
 
-
+</div>
+</div>
 {% endblock %}

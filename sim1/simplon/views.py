@@ -16,8 +16,7 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-def home(request):
-    return render(request,'simplon/home.html')
+
 
 def base(request):
     return render(request,'simplon/index.html')
@@ -31,11 +30,11 @@ def signin(request):
         if user:
             login(request,user)
             if my_user.role == "vendeur":
-                return redirect('vente_home')
+                return redirect('vente_stats')
             elif my_user.role == "gestionnaire":
-                return redirect('gestionH')
+                return redirect('stats')
             elif my_user.role =="superviseur":
-                return redirect('home_supervisor')
+                return redirect('dashboard')
 
             return render(request, 'simplon/login.html')
         
@@ -45,10 +44,10 @@ def signin(request):
             messages =  'compte inactif'
             return render(request,'simplon/login.html', {'messages':messages})
         else:
-            messages = 'mauvaise connexion'
+            messages = 'Username ou mot de passe incorret'
             return render(request,'simplon/login.html',{'messages':messages})
 
-    return render(request , 'simplon/login.html')
+    return render(request , 'simplon/login.html', {'messages':''})
 
 
 def activate(request, uidb64, token):
@@ -131,7 +130,7 @@ def verif_shap(request):
         else:
             message = 'mot de pass incorret'
             return render(request,'simplon/verfication_recup.html', {'sms':sms})
-    return render(request,'simplon/verification_recup.html' @login_required)   
+    return render(request,'simplon/verification_recup.html')   
 
 
 

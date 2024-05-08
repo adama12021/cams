@@ -153,6 +153,7 @@ class Produit(models.Model):
     categorie = models.CharField(max_length=225)
     p_unitaire = models.IntegerField(db_column='P_UNITAIRE')  # Field name made lowercase.
     quantite = models.IntegerField(db_column='QUANTITE')  # Field name made lowercase.
+    archiver = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = True
